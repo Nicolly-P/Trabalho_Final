@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Glória</title>
+
+    <!-- Ligação com o CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TELA INICIAL -->
+    <div class="tela-inicial" id="telaInicial">
+
+        <div class="conteudo">
+            <!-- Nome do jogo -->
+            <h1 class="titulo"> Santa Gloria </h1>
+
+            <!-- MÚSICA DE FUNDO -->
+            <audio id="musicaFundo" loop style="display: none;">
+                <source src="audio.mp3" type="audio/mpeg"> Seu navegador não suporta o elemento de áudio. </audio>
+
+            <div class="botoes">
+
+                <button onclick="novoJogo()"> Novo Jogo </button>
+
+                <button onclick="abrirComoJogar()"> Como Jogar </button>
+
+                <button onclick="abrirConfiguracoes()"> Configuração </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JANELA COMO JOGAR -->
+    <div class="janela-como-jogar" id="janelaComoJogar">
+
+        <div class="caixa-como-jogar">
+
+            <h2>Como Jogar</h2>
+
+            <!-- A explicação do jogo será adicionada aqui depois. -->
+
+        </div>
+
+    </div>
+
+
+    <!-- TELA DE CONFIGURAÇÕES -->
+    <div class="tela-configuracoes" id="telaConfiguracoes">
+
+        <button class="botao-fechar" onclick="voltarInicio()"> X </button>
+
+        <div class="conteudo-configuracoes">
+
+            <h1 class="titulo-configuracoes"> Configurações </h1>
+
+            <!-- BOTÃO PARA MUTAR/DESMUTAR A MÚSICA -->
+            <button class="botao-musica" id="botaoMusica" onclick="alternarMusica()"> 🔊 Música: Ligada </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TELA DO JOGO -->
+    <div class="tela-jogo" id="telaJogo">
+
+        <button class="botao-fechar" onclick="voltarInicio()"> X </button>
+
+        <h1> O jogo começará aqui... </h1>
+
+    </div>
+
+    <!-- Ligação com o JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
