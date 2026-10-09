@@ -99,6 +99,7 @@ BOTÕES
     color: rgb(255, 0, 0);
     cursor: pointer;
     transition: 0.2s;
+    font-family: 'MinhaFonteSangue';
 }
 
 .botoes button:hover {
@@ -133,8 +134,11 @@ JANELA "COMO JOGAR"
 }
 
 .caixa-como-jogar h2 {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 50px;
     color: rgb(255, 0, 0);
+    font-family: 'MinhaFonteCustom';
 }
 
 
@@ -163,9 +167,10 @@ TELA DE CONFIGURAÇÕES
 
 /* Título das configurações */
 .titulo-configuracoes {
-    font-size: 40px;
-    margin-bottom: 250px;
+    font-size: 60px;
+    margin-bottom: 290px;
     color: red;
+    font-family: 'MinhaFonteCustom';
 }
 
 
@@ -178,12 +183,19 @@ TELA DE CONFIGURAÇÕES
     border: 2px solid rgb(255, 0, 0);
     background-color: black;
     font-size: 15px;
+    font-family: 'MinhaFonteSangue';
 }
 
 
 /* ==========================================
 JANELA CRIADORES
 ========================================== */
+@font-face {
+    font-family: 'MinhaFonteSangue';
+    src: url('sangue.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 .Criadores {
     display: none;
     position: fixed;
@@ -207,8 +219,18 @@ JANELA CRIADORES
 }
 
 .caixa-criadores h2 {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    margin-top: 0px;
     color: rgb(255, 0, 0);
+    font-size: 60px;
+    font-family: 'MinhaFonteCustom';
+    margin-left: 8%;
+}
+.caixa-criadores ul{
+    color: red;
+    align-items: center;
+    font-family: 'MinhaFonteSangue';
+    font-size: 20px;
 }
 
 
