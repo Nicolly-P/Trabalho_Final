@@ -76,6 +76,7 @@
 
     </div>
 
+
     <!-- JANELA CRIADORES -->
     <div class="Criadores" id="criadores">
 
@@ -83,21 +84,20 @@
             <h2>Criadores:</h2>
         </div>
 
-
     </div>
 
 
     <!-- TELA DO JOGO -->
     <div class="tela-jogo" id="telaJogo">
 
-        <button class="botao-fechar" onclick="voltarInicio()"> X </button>
+        <button class="botao-fechar" id="botaoFecharJogo" onclick="irParaHistoria()"> > </button>
 
         <!-- Vídeo -->
         <div class="video-container">
-            <video id="meuVideo" width="1560" controls>
-            <source src="musica.mp4" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
-            </video>
+
+            <video id="meuVideo" width="1560" playsinline>
+                <source src="contagem.mp4" type="video/mp4"> Seu navegador não suporta a tag de vídeo. </video>
+
         </div>
 
     </div>
