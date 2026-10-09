@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Santa Glória</title>
 
     <!-- Ligação com o CSS -->
@@ -16,12 +17,15 @@
     <div class="tela-inicial" id="telaInicial">
 
         <div class="conteudo">
+
             <!-- Nome do jogo -->
             <h1 class="titulo"> Santa Gloria </h1>
 
             <!-- MÚSICA DE FUNDO -->
             <audio id="musicaFundo" loop style="display: none;">
-                <source src="audio.mp3" type="audio/mpeg"> Seu navegador não suporta o elemento de áudio. </audio>
+                <source src="audio.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
 
             <div class="botoes">
 
@@ -30,6 +34,8 @@
                 <button onclick="abrirComoJogar()"> Como Jogar </button>
 
                 <button onclick="abrirConfiguracoes()"> Configuração </button>
+
+                <button onclick="abrircriadores()"> Criadores </button>
 
             </div>
 
@@ -62,9 +68,21 @@
             <h1 class="titulo-configuracoes"> Configurações </h1>
 
             <!-- BOTÃO PARA MUTAR/DESMUTAR A MÚSICA -->
-            <button class="botao-musica" id="botaoMusica" onclick="alternarMusica()"> 🔊 Música: Ligada </button>
+            <button class="botao-musica" id="botaoMusica" onclick="alternarMusica()">
+                🔊 Música: Ligada
+            </button>
 
         </div>
+
+    </div>
+
+    <!-- JANELA CRIADORES -->
+    <div class="Criadores" id="criadores">
+
+        <div class="caixa-criadores">
+            <h2>Criadores:</h2>
+        </div>
+
 
     </div>
 
@@ -74,9 +92,16 @@
 
         <button class="botao-fechar" onclick="voltarInicio()"> X </button>
 
-        <h1> O jogo começará aqui... </h1>
+        <!-- Vídeo -->
+        <div class="video-container">
+            <video id="meuVideo" width="1560" controls>
+            <source src="musica.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+            </video>
+        </div>
 
     </div>
+
 
     <!-- Ligação com o JavaScript -->
     <script src="script.js"></script>
