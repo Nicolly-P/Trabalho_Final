@@ -131,7 +131,7 @@ function irParaHistoria() {
         return;
     }
 
-    window.location.href = "historia.html";
+    window.location.href = "historia.html?fadein=1";
     
 }
 

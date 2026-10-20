@@ -546,3 +546,21 @@ CELULAR
         font-size: 32px;
     }
 }
+
+/* ==========================================
+EFEITO FADE-IN DA TELA DA HISTÓRIA
+========================================== */
+
+.fade-in-historia body {
+    animation: aparecerHistoria 1.5s ease-in-out both;
+}
+
+@keyframes aparecerHistoria {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

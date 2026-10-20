@@ -136,29 +136,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 disco.setPointerCapture(
                     event.pointerId
                 );
-
             }
         );
-
 
         disco.addEventListener(
             "pointermove",
             (event) => {
-
                 if (!arrastando) {
                     return;
                 }
-
                 event.preventDefault();
-
 
                 const movimento =
                     event.clientY - inicioY;
 
-
                 deslocamento =
                     deslocamentoInicial + movimento;
-
 
                 const passos =
                     Math.round(
@@ -166,20 +159,16 @@ document.addEventListener("DOMContentLoaded", () => {
                         / alturaNumero
                     );
 
-
                 numero =
                     ((passos % totalNumeros)
                     + totalNumeros)
                     % totalNumeros;
 
-
                 deslocamento =
                     referencia +
                     numero * alturaNumero;
 
-
                 atualizar();
-
             }
         );
 
@@ -187,112 +176,81 @@ document.addEventListener("DOMContentLoaded", () => {
         disco.addEventListener(
             "pointerup",
             (event) => {
-
                 arrastando = false;
 
                 try {
-
                     disco.releasePointerCapture(
                         event.pointerId
                     );
-
                 } catch (erro) {
-
                 }
-
             }
         );
-
 
         disco.addEventListener(
             "pointercancel",
             () => {
-
                 arrastando = false;
-
             }
         );
 
-
         atualizar();
-
     });
 
 
     /* =====================================
     ATUALIZAR SENHA
     ===================================== */
-
     function atualizarSenha() {
-
         const numeros =
             Array.from(discos).map(
                 (disco) =>
                     Number(disco.dataset.numero)
             );
 
-
         const senha =
             numeros.join("");
-
 
         senhaAtual.textContent =
             senha;
 
-
         if (senha === "547") {
-
             abrirArmario();
-
         }
-
     }
 
 
     /* =====================================
 ABRIR ARMÁRIO
     ===================================== */
-
     let armarioFoiAberto = false;
 
-
     function abrirArmario() {
-
         if (armarioFoiAberto) {
             return;
         }
 
-
         armarioFoiAberto = true;
-
 
         mensagemCadeado.textContent =
             "O cadeado abriu...";
 
-
         setTimeout(() => {
-
             cadeadoOverlay.classList.remove(
                 "aberto"
             );
 
-
             abrirCadeado.style.display =
                 "none";
-
 
             armarioFechado.style.display =
                 "none";
 
-
             armarioAberto.style.display =
                 "block";
 
-
             pegarUniforme.style.display =
                 "block";
-
-
         }, 700);
 
     }
@@ -301,7 +259,6 @@ ABRIR ARMÁRIO
     /* =====================================
 PEGAR UNIFORME
     ===================================== */
-
     pegarUniforme.addEventListener(
         "click",
         () => {
@@ -316,7 +273,6 @@ PEGAR UNIFORME
     /* =====================================
 ESC
     ===================================== */
-
     document.addEventListener(
         "keydown",
         (event) => {
