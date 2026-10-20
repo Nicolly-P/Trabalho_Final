@@ -132,4 +132,7 @@ function irParaHistoria() {
     }
 
     window.location.href = "historia.html";
+    
 }
+
+

@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Santa Glória</title>
-
     <!-- Ligação com o CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,26 +15,20 @@
     <div class="tela-inicial" id="telaInicial">
 
         <div class="conteudo">
-
             <!-- Nome do jogo -->
             <h1 class="titulo"> Santa Gloria </h1>
 
             <!-- MÚSICA DE FUNDO -->
             <audio id="musicaFundo" loop style="display: none;">
-                <source src="audio.mp3" type="audio/mpeg">
+                <source src="midia/audio.mp3" type="audio/mpeg">
                 Seu navegador não suporta o elemento de áudio.
             </audio>
 
             <div class="botoes">
-
                 <button onclick="novoJogo()"> Novo Jogo </button>
-
                 <button onclick="abrirComoJogar()"> Como Jogar </button>
-
                 <button onclick="abrirConfiguracoes()"> Ajustes </button>
-
                 <button onclick="abrircriadores()"> Criadores </button>
-
             </div>
 
         </div>
@@ -48,11 +40,8 @@
     <div class="janela-como-jogar" id="janelaComoJogar">
 
         <div class="caixa-como-jogar">
-
             <h2>Como Jogar</h2>
-
             <!-- A explicação do jogo será adicionada aqui depois. -->
-
         </div>
 
     </div>
@@ -60,9 +49,7 @@
 
     <!-- TELA DE CONFIGURAÇÕES -->
     <div class="tela-configuracoes" id="telaConfiguracoes">
-
         <button class="botao-fechar" onclick="voltarInicio()"> X </button>
-
         <div class="conteudo-configuracoes">
 
             <h1 class="titulo-configuracoes"> Ajustes </h1>
@@ -83,15 +70,15 @@
         <div class="caixa-criadores">
             <h2>Criadores:</h2>
             <ul>
-                <li>Cibelly Barbosa Silva</li>
-                <li>Isabelly Vitória dos Santos Zanela</li>
+                <li>Cibelly Barbosa</li>
+                <li>Isabelly Vitória dos Santos</li>
                 <li>Livia Queiroz Petrech</li>
                 <li>Mariana Hurla</li>
                 <li>Natália Pauliv</li>
-                <li>Nathalia Aparecida de Lima Lemes</li>
+                <li>Nathalia Aparecida</li>
                 <li>Nicolly Pedroso</li>
-                <li>Rihanna Dill Rodrigues dos Santos</li>
-                <li>Yasmin Correa Mascarenhas</li>
+                <li>Rihanna Dill Rodrigues</li>
+                <li>Yasmin Mascarenhas</li>
             </ul>
         </div>
 
@@ -107,7 +94,9 @@
         <div class="video-container">
 
             <video id="meuVideo" width="1560" playsinline>
-                <source src="contagem.mp4" type="video/mp4"> Seu navegador não suporta a tag de vídeo. </video>
+                <source src="midia/contagem.mp4" type="video/mp4"> Seu navegador não suporta a tag de vídeo. </video>
+
+                
 
         </div>
 

@@ -4,39 +4,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Santa Glória</title>
-
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylehistoria.css">
 </head>
 
 <body>
 
     <!-- MÚSICA DE FUNDO -->
 <audio id="musicaFundo" loop style="display:none;">
-    <source src="audio.mp3" type="audio/mpeg">
+    <source src="midia/audio.mp3" type="audio/mpeg">
 </audio>
 
     <!-- TELA DA HISTÓRIA -->
     <div class="tela-historia">
 
-        <h1 class="titulo-historia">
-            Santa Gloria
-        </h1>
+        <main class="game">
 
-        <div class="conteudo-historia">
+        <!-- CENÁRIO -->
+        <img src="cenariouniforme.png" class="cenario" alt="Sala das enfermeiras" >
 
-            <h2>Capítulo 1</h2>
+        <!-- =====================================
+            ARMÁRIO 3
+        ====================================== -->
+        <div class="armario-container">
 
-            <p>
-                A história começa aqui...
-            </p>
+            <!-- ARMÁRIO FECHADO -->
+            <img src="armario.png" class="armario" id="armarioFechado" alt="Armário 3" >
+
+            <!-- ARMÁRIO ABERTO -->
+            <img src="armarioaber.png" class="armario armario-aberto" id="armarioAberto" alt="Armário 3 aberto" >
+
+            <!-- CADEADO -->
+            <button class="cadeado-botao" id="abrirCadeado" type="button" >
+                <img src="cadeado.png" class="cadeado" alt="Cadeado do Armário 3">
+            </button>
+
+            <!-- UNIFORME -->
+            <button class="uniforme-botao" id="pegarUniforme" type="button" >
+                <img src="uniforme.png" class="uniforme" alt="Uniforme de enfermeira">
+            </button>
 
         </div>
 
-    </div>
+        <!-- =====================================
+            QUADRO
+        ====================================== -->
+        <button class="quadro-botao" id="abrirQuadro" type="button" >
+            <img src="quadro.png" class="quadro" alt="Quadro de investigação">
+
+            <img src="papel.png" class="papel-no-quadro-sala" alt="">
+
+        </button>
+
+
+        <!-- =====================================
+            ZOOM DO QUADRO
+        ====================================== -->
+        <div
+            class="overlay"
+            id="quadroOverlay">
+
+            <button class="botao-fechar" id="fecharQuadro" type="button" aria-label="Fechar quadro"> × </button>
+
+            <div class="quadro-grande-wrapper">
+                <img src="quadro.png" class="quadro-grande" alt="Quadro de investigação ampliado">
+
+                <!-- PAPEL CLICÁVEL -->
+                <button class="papel-botao" id="abrirPapel "type="button">
+                    <img src="papel.png" class="papel-no-quadro" alt="Papel">
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+            ZOOM DO PAPEL
+        ====================================== -->
+        <div class="overlay papel-overlay" id="papelOverlay">
+
+            <button
+                class="botao-fechar"
+                id="fecharPapel"
+                type="button" aria-label="Fechar papel" > × </button>
+
+            <img
+                src="papel.png"
+                class="papel-grande"
+                alt="Papel ampliado"
+            >
+
+        </div>
+
+
+        <!-- =====================================
+            CADEADO / COMBINAÇÃO
+        ====================================== -->
+        <div
+            class="overlay cadeado-overlay"
+            id="cadeadoOverlay"
+        >
+
+            <button class="botao-fechar" id="fecharCadeado" type="button" aria-label="Fechar cadeado" > × </button>
+
+            <div class="cadeado-painel">
+
+                <h2>CADEADO</h2>
+
+                <p class="instrucao">
+                    Arraste os discos para cima ou para baixo
+                </p>
+
+                <div class="cadeado-discos">
+
+                    <!-- DISCO 1 -->
+                    <div class="disco-arrastavel" data-numero="0" >
+
+                        <div class="numeros">
+                            <span>0</span>
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                        </div>
+
+                        <div class="linha-superior"></div>
+                        <div class="linha-inferior"></div>
+
+                    </div>
+
+
+                    <!-- DISCO 2 -->
+                    <div
+                        class="disco-arrastavel"
+                        data-numero="0"
+                    >
+
+                        <div class="numeros">
+                            <span>0</span>
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                        </div>
+
+                        <div class="linha-superior"></div>
+                        <div class="linha-inferior"></div>
+
+                    </div>
+
+
+                    <!-- DISCO 3 -->
+                    <div
+                        class="disco-arrastavel"
+                        data-numero="0"
+                    >
+
+                        <div class="numeros">
+                            <span>0</span>
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                        </div>
+
+                        <div class="linha-superior"></div>
+                        <div class="linha-inferior"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SENHA ATUAL -->
+                <div
+                    class="senha-atual"
+                    id="senhaAtual"
+                >
+                    000
+                </div>
+
+
+                <!-- MENSAGEM DO CADEADO -->
+                <div
+                    class="mensagem-cadeado"
+                    id="mensagemCadeado"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+            MENSAGEM DO JOGO
+        ====================================== -->
+
+        <div
+            class="mensagem-jogo"
+            id="mensagemJogo"
+        ></div>
+
+    </main>
 
     <!-- JavaScript -->
+    <script src="scripthistoria.js"></script>
     <script src="script.js"></script>
     <script src="musica.js"></script>
 
