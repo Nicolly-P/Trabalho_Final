@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================
-OBJETIVO DO JOGO
+    OBJETIVO DO JOGO
 ===================================== */
 
 const objetivoJogo = document.getElementById("objetivoJogo");
@@ -254,7 +254,7 @@ if (document.documentElement.classList.contains("fade-in-historia")) {
 
 
     /* =====================================
-ABRIR ARMÁRIO
+    ABRIR ARMÁRIO
     ===================================== */
     let armarioFoiAberto = false;
 
@@ -290,7 +290,7 @@ ABRIR ARMÁRIO
 
 
     /* =====================================
-PEGAR UNIFORME
+    PEGAR UNIFORME
     ===================================== */
     pegarUniforme.addEventListener(
         "click",
@@ -304,7 +304,7 @@ PEGAR UNIFORME
 
 
     /* =====================================
-ESC
+    ESC
     ===================================== */
     document.addEventListener(
         "keydown",
