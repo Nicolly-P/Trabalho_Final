@@ -564,3 +564,142 @@ EFEITO FADE-IN DA TELA DA HISTÓRIA
         opacity: 1;
     }
 }
+
+/* =====================================
+   OBJETIVO DO JOGO
+===================================== */
+
+.objetivo-jogo {
+    position: absolute;
+
+    top: 30px;
+    left: 30px;
+
+    width: 280px;
+
+    padding: 15px 18px;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    border-left: 3px solid #b5a0c9;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    z-index: 80;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(-15px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        visibility 0.7s;
+}
+
+/* TÍTULO */
+
+.objetivo-titulo {
+    display: block;
+
+    color: #c7afd9;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+}
+
+/* =====================================
+CONTAINER DOS OBJETIVOS
+===================================== */
+
+.objetivos-container {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+
+    width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    z-index: 80;
+}
+
+/* OBJETIVOS */
+
+.objetivo-jogo {
+    position: relative;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 15px 18px;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    border-left: 3px solid #b5a0c9;
+
+    color: white;
+    font-family: Arial, sans-serif;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(-15px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        visibility 0.7s;
+}
+
+.objetivo-jogo.visivel {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateX(0);
+}
+
+/* TÍTULOS */
+
+.objetivo-titulo {
+    display: block;
+
+    color: #c7afd9;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+}
+
+/* DESCRIÇÃO */
+
+.objetivo-jogo p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #eeeeee;
+}
+
+/* BÔNUS */
+
+.bonus-jogo {
+    border-left-color: #d6b76e;
+}
+
+.bonus-jogo .objetivo-titulo {
+    color: #d6b76e;
+}

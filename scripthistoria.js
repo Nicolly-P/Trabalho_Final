@@ -1,4 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================
+OBJETIVO DO JOGO
+===================================== */
+
+const objetivoJogo = document.getElementById("objetivoJogo");
+const bonusJogo = document.getElementById("bonusJogo");
+
+function mostrarObjetivo() {
+    objetivoJogo.classList.add("visivel");
+}
+
+// Verifica se a página está utilizando fade-in
+if (document.documentElement.classList.contains("fade-in-historia")) {
+
+    // Aguarda o término da animação
+    document.body.addEventListener("animationend", function aparecer() {
+
+        mostrarObjetivo();
+
+        document.body.removeEventListener("animationend", aparecer);
+
+    });
+
+} else {
+
+    // Caso não exista fade-in, mostra após o carregamento
+    mostrarObjetivo();
+
+}
     /* =====================================
     QUADRO
     ===================================== */
@@ -77,6 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
     abrirCadeado.addEventListener("click", () => {
         cadeadoOverlay.classList.add("aberto");
         mensagemCadeado.textContent = "";
+
+        // Mostra o objetivo bônus
+    bonusJogo.classList.add("visivel");
     });
 
 
