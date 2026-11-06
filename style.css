@@ -142,51 +142,6 @@ JANELA "COMO JOGAR"
 
 
 /* ==========================================
-TELA DE CONFIGURAÇÕES
-========================================== */
-.tela-configuracoes {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #171717;
-    z-index: 20;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* Conteúdo das configurações */
-.conteudo-configuracoes {
-    text-align: center;
-}
-
-
-/* Título das configurações */
-.titulo-configuracoes {
-    font-size: 60px;
-    margin-bottom: 290px;
-    color: red;
-    font-family: 'MinhaFonteCustom';
-}
-
-
-/* Botão da música */
-.botao-musica {
-    min-width: 300px;
-    height: 55px;
-    margin-bottom: 300px;
-    color: rgb(255, 0, 0);
-    border: 2px solid rgb(255, 0, 0);
-    background-color: black;
-    font-size: 15px;
-    font-family: 'MinhaFonteSangue';
-}
-
-
-/* ==========================================
 JANELA CRIADORES
 ========================================== */
 @font-face {
@@ -327,4 +282,148 @@ TELA DA HISTÓRIA
 
 .conteudo-historia h2 {
     color: red;
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================
+TELA DE CONFIGURAÇÕES
+========================================== */
+.tela-configuracoes {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.92);
+    z-index: 20;
+
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+/* Conteúdo das configurações */
+.conteudo-configuracoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+
+    text-align: center;
+    border: 2px solid red;
+    background-color: rgba(20, 20, 20, 0.95);
+}
+
+/* Título */
+.titulo-configuracoes {
+    font-size: 50px;
+    margin: 0 0 25px 0;
+
+    color: red;
+    font-family: 'MinhaFonteCustom';
+}
+
+/* Botão da música */
+.botao-musica {
+    width: 250px;
+    min-height: 45px;
+    margin: 10px auto;
+
+    color: rgb(255, 0, 0);
+    border: 2px solid rgb(255, 0, 0);
+    background-color: black;
+
+    font-size: 15px;
+    font-family: 'MinhaFonteSangue';
+    cursor: pointer;
+}
+
+/* ==========================================
+ITENS DAS CONFIGURAÇÕES
+========================================== */
+
+.configuracao-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 300px;
+    margin: 12px auto;
+
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.configuracao-item label {
+    font-size: 15px;
+    text-align: left;
+}
+
+.configuracao-item input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    accent-color: red;
+}
+
+/* ==========================================
+BOTÕES DAS CONFIGURAÇÕES
+========================================== */
+
+.botao-configuracao {
+    display: block;
+
+    width: 250px;
+    min-height: 45px;
+    padding: 12px;
+
+    margin: 8px auto;
+
+    border: 1px solid red;
+    background: rgba(20, 15, 30, 0.9);
+
+    color: white;
+    font-size: 14px;
+    font-family: 'MinhaFonteSangue';
+
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.botao-configuracao:hover {
+    background: #6e527f;
+}
+
+/* ==========================================
+TELAS MENORES
+========================================== */
+
+@media (max-width: 600px) {
+    .conteudo-configuracoes {
+        width: 85%;
+        padding: 20px;
+    }
+
+    .titulo-configuracoes {
+        font-size: 38px;
+    }
+
+    .botao-musica,
+    .botao-configuracao {
+        width: 100%;
+        max-width: 250px;
+    }
 }

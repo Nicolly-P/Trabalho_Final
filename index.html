@@ -54,10 +54,87 @@
 
             <h1 class="titulo-configuracoes"> Ajustes </h1>
 
-            <!-- BOTÃO PARA MUTAR/DESMUTAR A MÚSICA -->
-            <button class="botao-musica" id="botaoMusica" onclick="alternarMusica()">
-                🔊 Música: Ligada
-            </button>
+            <!-- BOTÃO DE MÚSICA -->
+<button
+    class="botao-musica"
+    id="botaoMusica"
+    onclick="alternarMusica()">
+    🔊 Música: Ligada
+</button>
+
+
+<!-- VOLUME DA MÚSICA -->
+<div class="configuracao-item">
+
+    <label for="controleVolume">
+        Volume da música:
+        <span id="valorVolume">50%</span>
+    </label>
+
+    <input
+        type="range"
+        id="controleVolume"
+        min="0"
+        max="100"
+        value="50"
+        oninput="alterarVolume(this.value)"
+    >
+
+</div>
+
+
+<!-- BRILHO DA TELA -->
+<div class="configuracao-item">
+
+    <label for="controleBrilho">
+        Brilho da tela:
+        <span id="valorBrilho">100%</span>
+    </label>
+
+    <input
+        type="range"
+        id="controleBrilho"
+        min="50"
+        max="120"
+        value="100"
+        oninput="alterarBrilho(this.value)"
+    >
+
+</div>
+
+
+<!-- LEGENDAS -->
+<button
+    class="botao-configuracao"
+    id="botaoLegendas"
+    onclick="alternarLegendas()">
+    Legendas: Ligadas
+</button>
+
+
+<!-- EFEITOS SONOROS -->
+<button
+    class="botao-configuracao"
+    id="botaoEfeitos"
+    onclick="alternarEfeitos()">
+    Efeitos sonoros: Ligados
+</button>
+
+
+<!-- TELA CHEIA -->
+<button
+    class="botao-configuracao"
+    onclick="alternarTelaCheia()">
+    Tela cheia
+</button>
+
+
+<!-- RESTAURAR CONFIGURAÇÕES -->
+<button
+    class="botao-configuracao"
+    onclick="restaurarConfiguracoes()">
+    Restaurar padrões
+</button>
 
         </div>
 
@@ -106,6 +183,7 @@
     <!-- Ligação com o JavaScript -->
     <script src="musica.js"></script>
     <script src="script.js"></script>
+    <script src="configuracoes.js"></script>
 
 </body>
 

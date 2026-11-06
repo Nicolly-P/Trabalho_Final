@@ -1,10 +1,12 @@
 // ==========================================
-// CONFIGURAÇÃO DA MÚSICA
+// CONFIGURAÇÕES DA MÚSICA
 // ==========================================
 
-// Recupera a preferência salva no navegador.
-// Se não houver preferência salva, a música começa ligada.
 let musicaMutada = localStorage.getItem("musicaMutada") === "true";
+
+let volumeMusica = Number(
+    localStorage.getItem("volumeMusica") ?? 50
+);
 
 
 // ==========================================
@@ -16,14 +18,11 @@ function iniciarMusica() {
 
     if (!audio) return;
 
-    audio.volume = 0.5;
-
-    // Aplica a preferência salva pelo usuário.
+    audio.volume = volumeMusica / 100;
     audio.muted = musicaMutada;
 
     atualizarBotaoMusica();
 
-    // Tenta iniciar a música.
     audio.play().catch(() => {
         document.addEventListener("click", tentarTocarMusica, {
             once: true
@@ -33,7 +32,7 @@ function iniciarMusica() {
 
 
 // ==========================================
-// TENTAR TOCAR A MÚSICA
+// TENTAR TOCAR MÚSICA
 // ==========================================
 
 function tentarTocarMusica() {
@@ -54,18 +53,14 @@ function alternarMusica() {
 
     if (!audio) return;
 
-    // Inverte o estado atual.
     musicaMutada = !musicaMutada;
 
-    // Salva a preferência para as outras páginas.
     localStorage.setItem("musicaMutada", musicaMutada);
 
-    // Aplica a alteração ao áudio da página atual.
     audio.muted = musicaMutada;
 
     atualizarBotaoMusica();
 
-    // Se a música foi ligada, tenta reproduzi-la.
     if (!musicaMutada) {
         audio.play().catch(() => {});
     }
@@ -73,7 +68,30 @@ function alternarMusica() {
 
 
 // ==========================================
-// ATUALIZAR TEXTO DO BOTÃO
+// ALTERAR VOLUME
+// ==========================================
+
+function alterarVolume(valor) {
+    volumeMusica = Number(valor);
+
+    localStorage.setItem("volumeMusica", volumeMusica);
+
+    const audio = document.getElementById("musicaFundo");
+
+    if (audio) {
+        audio.volume = volumeMusica / 100;
+    }
+
+    const textoVolume = document.getElementById("valorVolume");
+
+    if (textoVolume) {
+        textoVolume.textContent = volumeMusica + "%";
+    }
+}
+
+
+// ==========================================
+// ATUALIZAR BOTÃO DA MÚSICA
 // ==========================================
 
 function atualizarBotaoMusica() {
@@ -91,4 +109,13 @@ function atualizarBotaoMusica() {
 // INICIAR AO CARREGAR A PÁGINA
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", iniciarMusica);
+document.addEventListener("DOMContentLoaded", () => {
+    iniciarMusica();
+
+    const controleVolume = document.getElementById("controleVolume");
+
+    if (controleVolume) {
+        controleVolume.value = volumeMusica;
+        alterarVolume(volumeMusica);
+    }
+});
