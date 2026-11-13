@@ -2,7 +2,6 @@
  // ==========================================
  // NOVO JOGO
  // ==========================================
-
 function novoJogo() {
     const telaJogo = document.getElementById("telaJogo");
     const telaInicial = document.getElementById("telaInicial");
@@ -24,7 +23,6 @@ function novoJogo() {
 // ==========================================
 // COMO JOGAR
 // ==========================================
-
 function abrirComoJogar() {
     const janela = document.getElementById("janelaComoJogar");
     janela.style.display = "flex";
@@ -34,7 +32,6 @@ function abrirComoJogar() {
 // ==========================================
 // CONFIGURAÇÕES
 // ==========================================
-
 function abrirConfiguracoes() {
     const configuracoes = document.getElementById("telaConfiguracoes");
     configuracoes.style.display = "flex";
@@ -44,7 +41,6 @@ function abrirConfiguracoes() {
 // ==========================================
 // FECHAR "COMO JOGAR"
 // ==========================================
-
 document.getElementById("janelaComoJogar").onclick = function(event) {
     if (event.target === this) {
         this.style.display = "none";
@@ -55,7 +51,6 @@ document.getElementById("janelaComoJogar").onclick = function(event) {
 // ==========================================
 // CRIADORES
 // ==========================================
-
 function abrircriadores() {
     const janela = document.getElementById("criadores");
     janela.style.display = "flex";
@@ -65,7 +60,6 @@ function abrircriadores() {
 // ==========================================
 // FECHAR "CRIADORES"
 // ==========================================
-
 document.getElementById("criadores").onclick = function(event) {
     if (event.target === this) {
         this.style.display = "none";
@@ -76,7 +70,6 @@ document.getElementById("criadores").onclick = function(event) {
 // ==========================================
 // VOLTAR PARA A TELA INICIAL
 // ==========================================
-
 function voltarInicio() {
     document.getElementById("telaJogo").style.display = "none";
     document.getElementById("telaConfiguracoes").style.display = "none";
@@ -87,7 +80,6 @@ function voltarInicio() {
 // ==========================================
 // VÍDEO
 // ==========================================
-
 const video = document.getElementById("meuVideo");
 const audio = document.getElementById("musicaFundo");
 const botaoFecharJogo = document.getElementById("botaoFecharJogo");
@@ -134,5 +126,3 @@ function irParaHistoria() {
     window.location.href = "historia.html?fadein=1";
     
 }
-
-

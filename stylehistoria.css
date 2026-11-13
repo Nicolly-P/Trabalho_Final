@@ -566,26 +566,6 @@ EFEITO FADE-IN DA TELA DA HISTÓRIA
 /* =====================================
     OBJETIVO DO JOGO
 ===================================== */
-.objetivo-jogo {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    width: 280px;
-    padding: 15px 18px;
-    background: rgba(0, 0, 0, 0.75);
-    border-left: 3px solid #b5a0c9;
-    color: white;
-    font-family: Arial, sans-serif;
-    z-index: 80;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-15px);
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        visibility 0.7s;
-}
-
 /* TÍTULO */
 .objetivo-titulo {
     display: block;
@@ -610,12 +590,14 @@ CONTAINER DOS OBJETIVOS
     z-index: 80;
 }
 
-/* OBJETIVOS */
+/* =====================================
+OBJETIVOS
+===================================== */
 .objetivo-jogo {
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    padding: 15px 18px;
+    padding: 15px 40px 15px 18px;
     background: rgba(0, 0, 0, 0.75);
     border-left: 3px solid #b5a0c9;
     color: white;
@@ -624,18 +606,52 @@ CONTAINER DOS OBJETIVOS
     visibility: hidden;
     transform: translateX(-15px);
     transition:
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        visibility 0.7s;
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s;
 }
 
+/* OBJETIVO VISÍVEL */
 .objetivo-jogo.visivel {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
 }
 
-/* TÍTULOS */
+/* OBJETIVO MINIMIZADO */
+.objetivo-jogo.minimizado {
+    display: none;
+}
+
+/* =====================================
+BOTÃO DE MINIMIZAR
+===================================== */
+.minimizar-objetivo {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.minimizar-objetivo:hover {
+    color: #d6a0ff;
+    transform: scale(1.15);
+}
+
+/* =====================================
+TÍTULOS E DESCRIÇÕES
+===================================== */
+
 .objetivo-titulo {
     display: block;
     color: #c7afd9;
@@ -645,7 +661,6 @@ CONTAINER DOS OBJETIVOS
     margin-bottom: 8px;
 }
 
-/* DESCRIÇÃO */
 .objetivo-jogo p {
     margin: 0;
     font-size: 14px;
@@ -653,11 +668,56 @@ CONTAINER DOS OBJETIVOS
     color: #eeeeee;
 }
 
-/* BÔNUS */
+/* =====================================
+OBJETIVO BÔNUS
+===================================== */
+
 .bonus-jogo {
     border-left-color: #d6b76e;
 }
 
 .bonus-jogo .objetivo-titulo {
     color: #d6b76e;
+}
+
+/* =====================================
+ABAS LATERAIS
+===================================== */
+.objetivo-aba {
+    position: fixed;
+    left: 0;
+    top: 180px;
+    width: 28px;
+    height: 100px;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #a66bd4;
+    color: white;
+    font-size: 10px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        width 0.25s ease,
+        opacity 0.25s ease;
+    z-index: 100;
+}
+
+/* MOSTRAR ABA */
+.objetivo-aba.visivel {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.objetivo-aba:hover {
+    width: 22px;
+}
+
+/* ABA DO BÔNUS */
+.bonus-aba {
+    top: 290px;
+    background-color: #c99b48;
 }
