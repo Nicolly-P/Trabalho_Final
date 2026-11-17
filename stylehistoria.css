@@ -245,66 +245,46 @@ body {
     font-size: 38px;
 
     cursor: pointer;
-
     z-index: 200;
 }
 
 
 /* =====================================
-   QUADRO AMPLIADO
+QUADRO AMPLIADO
 ===================================== */
-
 .quadro-grande-wrapper {
     position: relative;
-
     width: min(80vw, 1100px);
-
     max-height: 85vh;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
 }
 
 .quadro-grande {
     display: block;
-
     width: 100%;
-
     max-height: 85vh;
-
     object-fit: contain;
-
     user-select: none;
-
     pointer-events: none;
 }
 
 
 /* =====================================
-   PAPEL
+PAPEL
 ===================================== */
-
 .papel-botao {
     position: absolute;
-
     width: 190px;
-
     left: 52%;
     top: 42%;
-
     transform: translate(-50%, -50%);
-
     padding: 0;
     margin: 0;
-
     border: none;
-
     background: transparent;
-
     cursor: pointer;
-
     z-index: 20;
 }
 

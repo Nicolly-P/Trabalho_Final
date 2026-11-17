@@ -1,0 +1,243 @@
+* {
+box-sizing: border-box;
+}
+
+/* ==========================================
+EFEITO FADE-IN DA TELA DA HISTÓRIA
+========================================== */
+.fade-in-historia body {
+    animation: aparecerHistoria 1.5s ease-in-out both;
+}
+
+@keyframes aparecerHistoria {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+margin: 0;
+padding: 0;
+overflow: hidden;
+background: black;
+font-family: Arial, sans-serif;
+}
+
+/* CENÁRIO */
+#cenario {
+position: relative;
+width: 100vw;
+height: 100vh;
+background-image: url("cenario.png");
+background-position: center bottom;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+/* PAINEL NA PORTA */
+.quadro-botao {
+position: absolute;
+width: 300px;
+left: 50%;
+top: 35%;
+transform: translate(-50%, -50%);
+padding: 0;
+margin: 0;
+border: none;
+background: transparent;
+cursor: pointer;
+z-index: 10;
+transition: transform 0.2s ease;
+}
+
+.quadro-botao:hover {
+transform: translate(-50%, -50%) scale(1.03);
+}
+
+.quadro-botao img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+/* FLOR NO CHÃO - LADO DIREITO */
+.flor-cenario {
+position: absolute;
+width: 800px;
+right: 8%;
+bottom: 0%;
+z-index: 20;
+pointer-events: none;
+
+  /* Sombra para dar profundidade */
+filter: drop-shadow(4px 8px 5px rgba(0,0,0,0.5));
+}
+
+/* PAPEL PERTO DA PLANTA */
+.papel-botao {
+position: absolute;
+width: 150px;
+right: 23%;
+bottom: 13%;
+border: none;
+padding: 0;
+background: transparent;
+cursor: pointer;
+z-index: 30;
+transition: transform 0.2s ease;
+}
+
+.papel-botao:hover {
+transform: scale(1.1);
+}
+
+.papel-botao img {
+width: 100%;
+display: block;
+}
+
+/* FUNDO ESCURO DO PAINEL */
+.overlay {
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.75);
+display: none;
+z-index: 100;
+align-items: center;
+justify-content: center;
+}
+
+/* PAINEL AMPLIADO */
+.quadro-grande-wrapper {
+position: relative;
+width: min(1300px, 96vw, calc(80vh * 1.8066));
+aspect-ratio: 1644 / 910;
+flex-shrink: 0;
+}
+
+.quadro-grande {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: contain;
+pointer-events: none;
+}
+
+/* BOTÃO FECHAR PAINEL */
+.botao-fechar {
+position: absolute;
+top: 10px;
+right: 10px;
+width: 42px;
+height: 42px;
+border: none;
+border-radius: 50%;
+background: rgba(20, 20, 20, 0.9);
+color: white;
+font-size: 30px;
+cursor: pointer;
+z-index: 200;
+display: flex;
+align-items: center;
+justify-content: center;
+line-height: 1;
+}
+
+.botao-fechar:hover {
+background: #be123c;
+}
+
+/* VISOR DIGITAL */
+#visor {
+position: absolute;
+top: 17.8%;
+left: 39.8%;
+width: 22.7%;
+height: 16.7%;
+background: transparent;
+border: none;
+outline: none;
+font-size: clamp(18px, 3vw, 55px);
+font-weight: bold;
+font-family: 'Courier New', monospace;
+color: #1a1a1a;
+text-align: center;
+letter-spacing: 6px;
+z-index: 150;
+}
+
+/* BOTÕES INVISÍVEIS */
+.numero {
+position: absolute;
+width: 6%;
+height: 10.5%;
+background: transparent;
+border: none;
+padding: 0;
+cursor: pointer;
+z-index: 150;
+}
+
+.numero:active {
+background: rgba(255, 255, 255, 0.2);
+border-radius: 4px;
+}
+
+/* PRIMEIRA LINHA */
+.n1 { left: 41.0%; top: 39.7%; }
+.n2 { left: 48.5%; top: 39.7%; }
+.n3 { left: 56.0%; top: 39.7%; }
+
+/* SEGUNDA LINHA */
+.n4 { left: 41.0%; top: 52.3%; }
+.n5 { left: 48.5%; top: 52.3%; }
+.n6 { left: 56.0%; top: 52.3%; }
+
+/* TERCEIRA LINHA */
+.n7 { left: 41.0%; top: 65.0%; }
+.n8 { left: 48.5%; top: 65.0%; }
+.n9 { left: 56.0%; top: 65.0%; }
+
+/* ZERO */
+.n0 { left: 48.5%; top: 77.8%; }
+
+/* FUNDO ESCURO DO PAPEL */
+.papel-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.8);
+display: none;
+align-items: center;
+justify-content: center;
+z-index: 300;
+}
+
+/* PAPEL AMPLIADO */
+.papel-grande {
+width: min(600px, 85vw);
+max-height: 85vh;
+object-fit: contain;
+}
+
+/* BOTÃO FECHAR PAPEL */
+.papel-fechar {
+position: absolute;
+top: 20px;
+right: 25px;
+width: 42px;
+height: 42px;
+border: none;
+border-radius: 50%;
+background: #222;
+color: white;
+font-size: 30px;
+cursor: pointer;
+}
+
+.papel-fechar:hover {
+background: #be123c;
+}

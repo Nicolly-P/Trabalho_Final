@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Santa Glória</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Interativo</title>
+<link rel="stylesheet" href="pagporta.css">
 
-    <link rel="stylesheet" href="stylehistoria.css">
-
-    <script>
+<script>
         if (new URLSearchParams(window.location.search).get("fadein") === "1") {
             document.documentElement.classList.add("fade-in-historia");
         }
     </script>
+
 </head>
 
 <body>
@@ -22,217 +21,92 @@
         <source src="midia/audio.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- TELA DA HISTÓRIA -->
-    <div class="tela-historia">
+<!-- CENÁRIO -->
+<div id="cenario">
 
-        <main class="game">
+<!-- PAINEL DA PORTA -->
+<button type="button"
+    class="quadro-botao"
+    onclick="abrirPainel()">
 
-            <!-- CENÁRIO -->
-            <img src="midia/cenariouniforme.png" class="cenario" alt="Sala das enfermeiras">
+    <img src="painel.png" alt="Painel da porta">
 
-            <!-- OBJETIVOS DO JOGO -->
-            <div class="objetivos-container" id="objetivosContainer">
+</button>
 
-                <!-- OBJETIVO PRINCIPAL -->
-                <div class="objetivo-jogo" id="objetivoJogo">
+<!-- FLOR NO CHÃO -->
+<img src="flor.png"
+    class="flor-cenario"
+    alt="Flor no cenário">
 
-                    <button class="minimizar-objetivo" id="minimizarObjetivo" type="button"> - </button>
+<!-- PAPEL PERTO DA PLANTA -->
+<button type="button"
+        class="papel-botao"
+        onclick="abrirPapel()">
 
-                    <span class="objetivo-titulo">OBJETIVO</span>
+    <img src="papel.png" alt="Anotação">
 
-                    <p>Investigue a sala e encontre uma maneira de se disfarçar.</p>
+</button>
 
-                </div>
+</div>
 
-                <!-- ABA PARA REABRIR OBJETIVO -->
-                <button class="objetivo-aba" id="abaObjetivo" type="button"> OBJETIVO </button>
+<!-- PAINEL AMPLIADO -->
+<div class="overlay" id="quadroOverlay">
 
-                <!-- OBJETIVO BÔNUS -->
-                <div class="objetivo-jogo bonus-jogo" id="bonusJogo">
+<div class="quadro-grande-wrapper">
 
-                    <button class="minimizar-objetivo" id="minimizarBonus" type="button"> - button>
+    <img src="painel.png"
+        class="quadro-grande"
+        alt="Painel ampliado">
 
-                    <span class="objetivo-titulo">BÔNUS</span>
+    <!-- VISOR -->
+    <input id="visor"
+    type="text"
+    readonly
+    maxlength="6">
 
-                    <p>Encontre a senha para abrir o armário.</p>
+    <!-- NÚMEROS -->
+    <button type="button" class="numero n1" onclick="digitar('1')"></button>
+    <button type="button" class="numero n2" onclick="digitar('2')"></button>
+    <button type="button" class="numero n3" onclick="digitar('3')"></button>
 
-                </div>
+    <button type="button" class="numero n4" onclick="digitar('4')"></button>
+    <button type="button" class="numero n5" onclick="digitar('5')"></button>
+    <button type="button" class="numero n6" onclick="digitar('6')"></button>
 
-                <!-- ABA PARA REABRIR BÔNUS -->
-                <button class="objetivo-aba bonus-aba" id="abaBonus" type="button"> BÔNUS </button>
+    <button type="button" class="numero n7" onclick="digitar('7')"></button>
+    <button type="button" class="numero n8" onclick="digitar('8')"></button>
+    <button type="button" class="numero n9" onclick="digitar('9')"></button>
 
-            </div>
+    <button type="button" class="numero n0" onclick="digitar('0')"></button>
 
-            <!-- =====================================
-                ARMÁRIO 3
-            ====================================== -->
-            <div class="armario-container">
+</div>
 
-                <!-- ARMÁRIO FECHADO -->
-                <img src="midia/armario.png" class="armario" id="armarioFechado" alt="Armário 3">
+<!-- FECHAR PAINEL -->
+<button type="button"
+    class="botao-fechar"
+    onclick="fecharPainel()"
+    aria-label="Fechar painel"> × </button>
 
-                <!-- ARMÁRIO ABERTO -->
-                <img src="midia/armarioaber.png" class="armario armario-aberto" id="armarioAberto" alt="Armário 3 aberto">
+</div>
 
-                <!-- CADEADO -->
-                <button class="cadeado-botao" id="abrirCadeado" type="button">
-                    <img src="midia/cadeado.png" class="cadeado" alt="Cadeado do Armário 3">
-                </button>
+<!-- PAPEL AMPLIADO (MESMA IMAGEM) -->
+<div class="papel-overlay" id="papelOverlay">
 
-                <!-- UNIFORME -->
-                <button class="uniforme-botao" id="pegarUniforme" type="button">
-                    <img src="midia/uniforme.png" class="uniforme" alt="Uniforme de enfermeira">
-                </button>
+<img src="papel.png"
+    class="papel-grande"
+    alt="Anotação ampliada">
 
-            </div>
+<!-- FECHAR PAPEL -->
+<button type="button"
+        class="papel-fechar"
+        onclick="fecharPapel()"> × </button>
 
-            <!-- =====================================
-                QUADRO
-            ====================================== -->
-            <button class="quadro-botao" id="abrirQuadro" type="button">
+</div>
 
-                <img src="midia/quadro.png" class="quadro" alt="Quadro de investigação">
-
-                <img src="midia/papel.png" class="papel-no-quadro-sala" alt="">
-
-            </button>
-
-            <!-- =====================================
-                ZOOM DO QUADRO
-            ====================================== -->
-            <div class="overlay" id="quadroOverlay">
-
-                <button class="botao-fechar" id="fecharQuadro" type="button" aria-label="Fechar quadro"> X </button>
-
-                <div class="quadro-grande-wrapper">
-
-                    <img src="midia/quadro.png" class="quadro-grande" alt="Quadro de investigação ampliado">
-
-                    <!-- PAPEL CLICÁVEL -->
-                    <button class="papel-botao" id="abrirPapel" type="button">
-                        <img src="midia/papel.png" class="papel-no-quadro" alt="Papel">
-                    </button>
-
-                </div>
-            </div>
-
-            <!-- =====================================
-                ZOOM DO PAPEL
-            ====================================== -->
-            <div class="overlay papel-overlay" id="papelOverlay">
-
-                <button class="botao-fechar" id="fecharPapel" type="button" aria-label="Fechar papel"> X </button>
-
-                <img src="midia/papel.png" class="papel-grande" alt="Papel ampliado">
-
-            </div>
-
-            <!-- =====================================
-                CADEADO / COMBINAÇÃO
-            ====================================== -->
-            <div class="overlay cadeado-overlay" id="cadeadoOverlay">
-
-                <button class="botao-fechar" id="fecharCadeado" type="button" aria-label="Fechar cadeado"> X </button>
-
-                <div class="cadeado-painel">
-
-                    <h2>CADEADO</h2>
-
-                    <p class="instrucao">
-                        Arraste os discos para cima ou para baixo
-                    </p>
-
-                    <div class="cadeado-discos">
-
-                        <!-- DISCO 1 -->
-                        <div class="disco-arrastavel" data-numero="0">
-
-                            <div class="numeros">
-                                <span>0</span>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                                <span>9</span>
-                            </div>
-
-                            <div class="linha-superior"></div>
-                            <div class="linha-inferior"></div>
-
-                        </div>
-
-                        <!-- DISCO 2 -->
-                        <div class="disco-arrastavel" data-numero="0">
-
-                            <div class="numeros">
-                                <span>0</span>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                                <span>9</span>
-                            </div>
-
-                            <div class="linha-superior"></div>
-                            <div class="linha-inferior"></div>
-
-                        </div>
-
-                        <!-- DISCO 3 -->
-                        <div class="disco-arrastavel" data-numero="0">
-
-                            <div class="numeros">
-                                <span>0</span>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                                <span>9</span>
-                            </div>
-
-                            <div class="linha-superior"></div>
-                            <div class="linha-inferior"></div>
-
-                        </div>
-                    </div>
-
-                    <!-- SENHA ATUAL -->
-                    <div class="senha-atual" id="senhaAtual">
-                        000
-                    </div>
-
-                    <!-- MENSAGEM DO CADEADO -->
-                    <div class="mensagem-cadeado" id="mensagemCadeado"></div>
-
-                </div>
-            </div>
-
-            <!-- =====================================
-                MENSAGEM DO JOGO
-            ====================================== -->
-            <div class="mensagem-jogo" id="mensagemJogo"></div>
-
-        </main>
-    </div>
-
-    <!-- LIGAÇÕES DOS SCRIPTS -->
-    <script src="scripthistoria.js"></script>
     <script src="script.js"></script>
+    <script src="scriptporta.js"></script>
     <script src="musica.js"></script>
     <script src="configuracoes.js"></script>
 
 </body>
-
 </html>
