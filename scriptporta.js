@@ -2,7 +2,12 @@ let senha = "";
 
 /* ABRIR PAINEL */
 function abrirPainel() {
-document.getElementById("quadroOverlay").style.display = "flex";
+
+    document.getElementById("quadroOverlay").style.display = "flex";
+
+    // MOSTRAR OBJETIVO AO CLICAR NO PAINEL
+    mostrarObjetivo();
+
 }
 
 /* FECHAR PAINEL */

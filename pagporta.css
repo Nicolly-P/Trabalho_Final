@@ -241,3 +241,287 @@ cursor: pointer;
 .papel-fechar:hover {
 background: #be123c;
 }
+
+/* ==========================================
+INTERFACE DE DIÁLOGO
+========================================== */
+
+/* CONTAINER GERAL */
+.interface-dialogo {
+    position: fixed;
+    inset: 0;
+
+    z-index: 50;
+
+    display: none;
+
+    pointer-events: none;
+}
+
+
+/* IMAGEM DA PERSONAGEM */
+.imagem-personagem {
+    position: absolute;
+
+    right: -15%;
+    bottom: 8;
+
+    height: 200%;
+    max-width: 100%;
+
+    object-fit: contain;
+    object-position: bottom;
+
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+/* CAIXA DE DIÁLOGO */
+.caixa-dialogo {
+    position: absolute;
+
+    left: 3%;
+    bottom: 3%;
+
+    width: 94%;
+    min-height: 160px;
+
+    padding: 25px 30px;
+
+    background: rgba(10, 10, 15, 0.92);
+
+    border: 2px solid rgba(255,255,255,0.35);
+    border-radius: 12px;
+
+    color: white;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+
+    z-index: 1;
+}
+
+
+/* NOME DA PERSONAGEM */
+.nome-personagem {
+    position: absolute;
+
+    top: -22px;
+    left: 30px;
+
+    padding: 8px 25px;
+
+    background: #302c3b;
+
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 6px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* TEXTO DA FALA */
+.texto-dialogo {
+    font-size: 19px;
+    line-height: 1.6;
+
+    margin-top: 5px;
+
+    max-width: 75%;
+}
+
+/* INDICADOR PARA CONTINUAR */
+.indicador-dialogo {
+    position: absolute;
+
+    right: 25px;
+    bottom: 15px;
+
+    font-size: 12px;
+
+    color: rgba(255,255,255,0.6);
+
+    animation: piscarDialogo 1.5s infinite;
+}
+
+/* ANIMAÇÃO DO INDICADOR */
+@keyframes piscarDialogo {
+    0%, 100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ==========================================
+   OBJETIVOS DO JOGO
+========================================== */
+
+/* CONTAINER GERAL */
+.objetivos-container {
+    position: fixed;
+
+    top: 25px;
+    left: 25px;
+
+    z-index: 350;
+
+    font-family: Arial, sans-serif;
+}
+
+/* OBJETIVO PRINCIPAL */
+.objetivo-jogo {
+    position: relative;
+
+    width: 300px;
+    min-height: 110px;
+
+    padding: 18px 20px;
+
+    background: rgba(15, 15, 20, 0.92);
+
+    border: 1px solid rgba(180, 150, 220, 0.55);
+    border-left: 4px solid #9b7acb;
+
+    border-radius: 6px;
+
+    color: white;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+
+    /* ESCONDIDO INICIALMENTE */
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(-20px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s;
+}
+
+/* OBJETIVO VISÍVEL */
+.objetivo-jogo.visivel {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateX(0);
+}
+
+/* CABEÇALHO */
+.objetivo-cabecalho {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 12px;
+
+    color: #c5a8ed;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+/* BOTÃO MINIMIZAR */
+.objetivo-cabecalho button {
+    width: 25px;
+    height: 25px;
+
+    border: none;
+    border-radius: 4px;
+
+    background: rgba(255,255,255,0.1);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: background 0.2s;
+}
+
+.objetivo-cabecalho button:hover {
+    background: rgba(155, 122, 203, 0.5);
+}
+
+/* TEXTO DO OBJETIVO */
+.objetivo-jogo p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #e5e5e5;
+}
+
+/* ==========================================
+   OBJETIVO MINIMIZADO
+========================================== */
+
+/* ESCONDER O PAINEL */
+.objetivo-jogo.minimizado {
+    display: none;
+}
+
+/* ABA PARA REABRIR */
+.objetivo-aba {
+    display: none;
+
+    width: 125px;
+
+    padding: 12px 15px;
+
+    background: rgba(15, 15, 20, 0.92);
+
+    border: 1px solid rgba(180, 150, 220, 0.55);
+    border-left: 4px solid #9b7acb;
+
+    border-radius: 5px;
+
+    color: #c5a8ed;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* MOSTRAR ABA */
+.objetivo-aba.visivel {
+    display: block;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.objetivo-aba:hover {
+    background: rgba(75, 55, 100, 0.95);
+
+    transform: translateX(4px);
+}

@@ -49,20 +49,64 @@
 
 </div>
 
+<!-- =====================================
+     OBJETIVO DO JOGO
+===================================== -->
+<div class="objetivos-container">
+
+    <!-- OBJETIVO PRINCIPAL -->
+    <div class="objetivo-jogo" id="objetivoJogo">
+
+        <div class="objetivo-cabecalho">
+            <span>OBJETIVO</span>
+
+            <button
+                type="button"
+                id="minimizarObjetivo"
+                aria-label="Minimizar objetivo"> − </button>
+        </div>
+        <p> Descubra qual a senha para destrancar a porta.</p>
+    </div>
+
+    <!-- ABA PARA REABRIR O OBJETIVO -->
+    <div class="objetivo-aba" id="abaObjetivo"> OBJETIVO + </div>
+
+</div>
+
+<!-- ==========================================
+INTERFACE DE DIÁLOGO
+========================================== -->
+<div id="interfaceDialogo" class="interface-dialogo">
+
+    <!-- IMAGEM DA PERSONAGEM -->
+    <img src="personagem.png" alt="Personagem" id="imagemPersonagem" class="imagem-personagem">
+
+    <!-- CAIXA DE DIÁLOGO -->
+    <div class="caixa-dialogo">
+
+        <!-- NOME DA PERSONAGEM -->
+        <div class="nome-personagem"> Personagem </div>
+
+        <!-- TEXTO DA FALA -->
+        <div class="texto-dialogo">
+        </div>
+
+        <!-- INDICADOR DE CONTINUAÇÃO -->
+        <div class="indicador-dialogo"> Clique ou pressione ENTER para continuar ▼ </div>
+
+    </div>
+
+</div>
+
 <!-- PAINEL AMPLIADO -->
 <div class="overlay" id="quadroOverlay">
 
 <div class="quadro-grande-wrapper">
 
-    <img src="painel.png"
-        class="quadro-grande"
-        alt="Painel ampliado">
+    <img src="painel.png" class="quadro-grande" alt="Painel ampliado">
 
     <!-- VISOR -->
-    <input id="visor"
-    type="text"
-    readonly
-    maxlength="6">
+    <input id="visor" type="text" readonly maxlength="6">
 
     <!-- NÚMEROS -->
     <button type="button" class="numero n1" onclick="digitar('1')"></button>
@@ -107,6 +151,8 @@
     <script src="scriptporta.js"></script>
     <script src="musica.js"></script>
     <script src="configuracoes.js"></script>
+    <script src="dialogo.js"></script>
+    <script src="objetivos.js"></script>
 
 </body>
 </html>
