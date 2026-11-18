@@ -70,16 +70,16 @@ santa-gloria/
 
 Projeto desenvolvido por:
 
-- **Cibelly Barbosa** — [Link do GitHub]
-- **Isabelly Vitória** — [Link do GitHub]
-- **Lívia Queiroz** — [Link do GitHub]
-- **Mariana Hurla** — [Link do GitHub]
-- **Natália Pauliv** — [Link do GitHub]
-- **Nathalia Aparecida** — [Link do GitHub]
-- **Nicolly Pedroso** — [Link do GitHub]
-- **Nicolly Pedroso** — [Link do GitHub]
-- **Rihanna Rodrigue** — [Link do GitHub]
-- **Yasmin Mascarenhas** — [Link do GitHub]
+- **Cibelly Barbosa** 
+- **Isabelly Vitória**
+- **Lívia Queiroz**
+- **Mariana Hurla** 
+- **Natália Pauliv** 
+- **Nathalia Aparecida**
+- **Nicolly Pedroso**
+- **Nicolly Pedroso** 
+- **Rihanna Rodrigue** 
+- **Yasmin Mascarenhas** 
 
 ## 📚 Aprendizados
 
