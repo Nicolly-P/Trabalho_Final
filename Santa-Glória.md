@@ -78,7 +78,7 @@ Projeto desenvolvido por:
 - **Nathalia Aparecida**
 - **Nicolly Pedroso**
 - **Nicolly Pedroso** 
-- **Rihanna Rodrigue** 
+- **Rihanna Rodrigues** 
 - **Yasmin Mascarenhas** 
 
 ## 📚 Aprendizados
