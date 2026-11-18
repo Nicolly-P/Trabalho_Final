@@ -1,22 +1,15 @@
-
 /* =====================================
    OBJETIVOS DO JOGO
 ===================================== */
 
 const objetivoJogo = document.getElementById("objetivoJogo");
-
 const abaObjetivo = document.getElementById("abaObjetivo");
-
 const minimizarObjetivoBotao = document.getElementById("minimizarObjetivo");
-
 
 // MOSTRAR OBJETIVO PRINCIPAL
 function mostrarObjetivo() {
-
     objetivoJogo.classList.add("visivel");
-
 }
-
 
 // MINIMIZAR OBJETIVO PRINCIPAL
 minimizarObjetivoBotao.addEventListener("click", () => {
@@ -28,7 +21,6 @@ minimizarObjetivoBotao.addEventListener("click", () => {
     abaObjetivo.classList.add("visivel");
 
 });
-
 
 // REABRIR OBJETIVO PRINCIPAL
 abaObjetivo.addEventListener("click", () => {

@@ -1,130 +1,95 @@
-
 /* ==========================================
-SISTEMA DE DIÁLOGOS - SANTA GLÓRIA
+   SISTEMA DE DIÁLOGOS - SANTA GLÓRIA
 ========================================== */
 
-// Elementos da interface
+// ELEMENTOS DA INTERFACE
 const interfaceDialogo = document.getElementById("interfaceDialogo");
 const imagemPersonagem = document.getElementById("imagemPersonagem");
 const nomePersonagem = document.querySelector(".nome-personagem");
 const textoDialogo = document.querySelector(".texto-dialogo");
 
-// Controle da conversa
+// CONTROLE DA CONVERSA
 let falaAtual = 0;
 let dialogoAtivo = false;
 
-
-/* ==========================================
-LISTA DE FALAS
-========================================== */
-
-// Adicione, remova ou edite as falas aqui.
-
+// ==========================================
+// LISTA DE FALAS
+// ==========================================
 const falas = [
-
     {
         nome: "Amélia",
-        imagem: "personagem.png",
+        imagem: "../assets/imagens/personagem.png",
         texto: "Eu finalmente cheguei... Mas esse lugar parece tão estranho..."
     },
 
     {
         nome: "Amélia",
-        imagem: "personagem.png",
+        imagem: "../assets/imagens/personagem.png",
         texto: "Espera... O que é aquilo na porta?"
     }
-
 ];
 
-
-/* ==========================================
-MOSTRAR UMA FALA
-========================================== */
-
+// ==========================================
+// MOSTRAR UMA FALA
+// ==========================================
 function mostrarFala() {
 
-    // Verifica se ainda existem falas
     if (falaAtual >= falas.length) {
-
         finalizarDialogo();
-
         return;
     }
 
-    // Obtém a fala atual
     const fala = falas[falaAtual];
 
-    // Atualiza as informações
     nomePersonagem.textContent = fala.nome;
-
     textoDialogo.textContent = fala.texto;
-
     imagemPersonagem.src = fala.imagem;
-
     imagemPersonagem.alt = fala.nome;
-
 }
 
-
-/* ==========================================
-INICIAR DIÁLOGO
-========================================== */
-
+// ==========================================
+// INICIAR DIÁLOGO
+// ==========================================
 function iniciarDialogo() {
-
     falaAtual = 0;
-
     dialogoAtivo = true;
 
     interfaceDialogo.style.display = "block";
 
     mostrarFala();
-
 }
 
-
-/* ==========================================
-AVANÇAR PARA A PRÓXIMA FALA
-========================================== */
-
+// ==========================================
+// AVANÇAR PARA A PRÓXIMA FALA
+// ==========================================
 function proximaFala() {
 
-    // Impede avançar se o diálogo estiver encerrado
     if (!dialogoAtivo) return;
 
     falaAtual++;
 
     mostrarFala();
-
 }
 
-
-/* ==========================================
-FINALIZAR DIÁLOGO
-========================================== */
-
+// ==========================================
+// FINALIZAR DIÁLOGO
+// ==========================================
 function finalizarDialogo() {
-
     dialogoAtivo = false;
 
     interfaceDialogo.style.display = "none";
 
     falaAtual = 0;
-
 }
 
-
-/* ==========================================
-AVANÇAR COM CLIQUE
-========================================== */
-
+// ==========================================
+// AVANÇAR COM CLIQUE
+// ==========================================
 document.addEventListener("click", function(event) {
 
     if (!dialogoAtivo) return;
 
-    // Não avançar ao interagir com os elementos
-    // de investigação ou outros controles.
-
+    // Não avança ao interagir com botões, campos ou overlays.
     if (
         event.target.closest("button") ||
         event.target.closest("input") ||
@@ -138,21 +103,22 @@ document.addEventListener("click", function(event) {
 
 });
 
-
-/* ==========================================
-AVANÇAR COM ENTER OU ESPAÇO
-========================================== */
-
+// ==========================================
+// AVANÇAR COM ENTER OU ESPAÇO
+// ==========================================
 document.addEventListener("keydown", function(event) {
 
     if (!dialogoAtivo) return;
 
+    const quadroOverlay = document.getElementById("quadroOverlay");
+    const papelOverlay = document.getElementById("papelOverlay");
+
     if (
-    document.getElementById("quadroOverlay").style.display === "flex" ||
-    document.getElementById("papelOverlay").style.display === "flex"
-) {
-    return;
-}
+        (quadroOverlay && quadroOverlay.style.display === "flex") ||
+        (papelOverlay && papelOverlay.style.display === "flex")
+    ) {
+        return;
+    }
 
     if (event.repeat) return;
 
@@ -160,25 +126,16 @@ document.addEventListener("keydown", function(event) {
         event.key === "Enter" ||
         event.code === "Space"
     ) {
-
-        // Impede comportamentos padrão do teclado
         event.preventDefault();
 
         proximaFala();
-
     }
-
 });
 
-
-/* ==========================================
-AGUARDAR O FADE-IN
-========================================== */
-
+// ==========================================
+// AGUARDAR O FADE-IN
+// ==========================================
 window.addEventListener("load", function() {
-
-    // Se a página estiver usando fade-in,
-    // aguarda os 1,5 segundos da animação.
 
     const possuiFade = document.documentElement
         .classList.contains("fade-in-historia");
@@ -186,9 +143,7 @@ window.addEventListener("load", function() {
     const duracaoFade = possuiFade ? 1500 : 0;
 
     setTimeout(function() {
-
         iniciarDialogo();
-
     }, duracaoFade);
 
 });

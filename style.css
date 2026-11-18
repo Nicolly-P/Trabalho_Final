@@ -1,20 +1,35 @@
 /* ==========================================
-CONFIGURAÇÕES GERAIS
+   CONFIGURAÇÕES GERAIS
 ========================================== */
 body {
+    margin: 0;
     background-color: #222;
     color: white;
     overflow: hidden;
 }
 
+/* FONTES */
+@font-face {
+    font-family: 'MinhaFonteCustom';
+    src: url('../assets/fontes/fonte.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MinhaFonteSangue';
+    src: url('../assets/fontes/sangue.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* ==========================================
-TELA PRINCIPAL
+   TELA PRINCIPAL
 ========================================== */
 .tela-inicial {
     width: 100vw;
     height: 100vh;
-    /* IMAGEM DE FUNDO */
-    background-image: url("fundo.jpg");
+    background-image: url('../assets/imagens/fundo.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -23,42 +38,26 @@ TELA PRINCIPAL
     position: relative;
 }
 
-/* Escurecimento da imagem */
 .tela-inicial::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.35);
     z-index: 1;
 }
 
-/* ==========================================
-CONTEÚDO
-========================================== */
+/* CONTEÚDO */
 .conteudo {
     position: relative;
     z-index: 2;
     text-align: left;
     width: 350px;
-    /* Posiciona o conteúdo à esquerda */
     margin-left: 8%;
     margin-right: auto;
     font-family: 'MinhaFonteCustom';
 }
 
-/* ==========================================
-TÍTULO
-========================================== */
-@font-face {
-    font-family: 'MinhaFonteCustom';
-    src: url('fonte.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
+/* TÍTULO */
 .titulo {
     font-size: 100px;
     margin-top: 10px;
@@ -72,9 +71,7 @@ TÍTULO
     font-family: 'MinhaFonteCustom';
 }
 
-/* ==========================================
-BOTÕES
-========================================== */
+/* BOTÕES */
 .botoes {
     display: flex;
     flex-direction: column;
@@ -82,7 +79,6 @@ BOTÕES
     gap: 15px;
 }
 
-/* Todos os botões ficam com o mesmo tamanho */
 .botoes button {
     width: 350px;
     height: 55px;
@@ -101,14 +97,11 @@ BOTÕES
     transform: scale(1.03);
 }
 
-/* ==========================================
-JANELA "COMO JOGAR"
-========================================== */
+/* JANELA "COMO JOGAR" */
 .janela-como-jogar {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.7);
@@ -127,28 +120,17 @@ JANELA "COMO JOGAR"
 }
 
 .caixa-como-jogar h2 {
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 10px 0;
     font-size: 50px;
     color: rgb(255, 0, 0);
     font-family: 'MinhaFonteCustom';
 }
 
-/* ==========================================
-JANELA CRIADORES
-========================================== */
-@font-face {
-    font-family: 'MinhaFonteSangue';
-    src: url('sangue.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
+/* JANELA CRIADORES */
 .Criadores {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.7);
@@ -167,30 +149,24 @@ JANELA CRIADORES
 }
 
 .caixa-criadores h2 {
-    margin-bottom: 50px;
-    margin-top: 0px;
+    margin: 0 0 50px 8%;
     color: rgb(255, 0, 0);
     font-size: 60px;
     font-family: 'MinhaFonteCustom';
-    margin-left: 8%;
 }
 
-.caixa-criadores ul{
+.caixa-criadores ul {
     color: red;
     align-items: center;
     font-family: 'MinhaFonteSangue';
     font-size: 20px;
 }
 
-
-/* ==========================================
-TELA DO JOGO
-========================================== */
+/* TELA DO JOGO */
 .tela-jogo {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background-color: black;
@@ -203,10 +179,7 @@ TELA DO JOGO
     color: rgb(255, 0, 0);
 }
 
-
-/* ==========================================
-BOTÃO X
-========================================== */
+/* BOTÃO DE FECHAR / AVANÇAR */
 .botao-fechar {
     position: absolute;
     top: 20px;
@@ -227,16 +200,13 @@ BOTÃO X
     transform: scale(1.05);
 }
 
-/* ==========================================
-VÍDEO
-========================================== */
+/* VÍDEO */
 .video-container {
     text-align: center;
-    max-width: 100%;
-    border-radius: 8px;
+    max-width: 200%;
+    border-radius: 120px;
 }
 
-/* Mantém o vídeo dentro da tela */
 .video-container video {
     max-width: 100vw;
     max-height: 100vh;
@@ -244,47 +214,11 @@ VÍDEO
     object-fit: contain;
 }
 
-
-/* ==========================================
-TELA DA HISTÓRIA
-========================================== */
-.tela-historia {
-    width: 100vw;
-    height: 100vh;
-    background-color: #171717;
-    padding: 40px;
-    text-align: center;
-}
-
-.titulo-historia {
-    color: red;
-    font-size: 50px;
-    text-shadow: 3px 3px 5px black;
-    font-family: 'MinhaFonteCustom';
-}
-
-.conteudo-historia {
-    width: 80%;
-    max-width: 900px;
-    margin: 50px auto 0;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    line-height: 1.6;
-}
-
-.conteudo-historia h2 {
-    color: red;
-}
-
-/* ==========================================
-TELA DE CONFIGURAÇÕES
-========================================== */
+/* TELA DE CONFIGURAÇÕES */
 .tela-configuracoes {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.92);
@@ -294,7 +228,6 @@ TELA DE CONFIGURAÇÕES
     overflow-y: auto;
 }
 
-/* Conteúdo das configurações */
 .conteudo-configuracoes {
     display: flex;
     flex-direction: column;
@@ -308,15 +241,13 @@ TELA DE CONFIGURAÇÕES
     background-color: rgba(20, 20, 20, 0.95);
 }
 
-/* Título */
 .titulo-configuracoes {
     font-size: 50px;
-    margin: 0 0 25px 0;
+    margin: 0 0 25px;
     color: red;
     font-family: 'MinhaFonteCustom';
 }
 
-/* Botão da música */
 .botao-musica {
     width: 250px;
     min-height: 45px;
@@ -329,9 +260,7 @@ TELA DE CONFIGURAÇÕES
     cursor: pointer;
 }
 
-/* ==========================================
-ITENS DAS CONFIGURAÇÕES
-========================================== */
+/* ITENS DAS CONFIGURAÇÕES */
 .configuracao-item {
     display: flex;
     flex-direction: column;
@@ -354,9 +283,7 @@ ITENS DAS CONFIGURAÇÕES
     accent-color: red;
 }
 
-/* ==========================================
-BOTÕES DAS CONFIGURAÇÕES
-========================================== */
+/* BOTÕES DAS CONFIGURAÇÕES */
 .botao-configuracao {
     display: block;
     width: 250px;
@@ -376,9 +303,7 @@ BOTÕES DAS CONFIGURAÇÕES
     background: #6e527f;
 }
 
-/* ==========================================
-TELAS MENORES
-========================================== */
+/* TELAS MENORES */
 @media (max-width: 600px) {
     .conteudo-configuracoes {
         width: 85%;

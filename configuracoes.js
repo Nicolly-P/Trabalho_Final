@@ -1,7 +1,6 @@
 // ==========================================
 // BRILHO DA TELA
 // ==========================================
-
 function alterarBrilho(valor) {
     const brilho = Number(valor);
 
@@ -17,11 +16,9 @@ function alterarBrilho(valor) {
     }
 }
 
-
 // ==========================================
 // LEGENDAS
 // ==========================================
-
 function alternarLegendas() {
     let legendasAtivas =
         localStorage.getItem("legendasAtivas") !== "false";
@@ -32,7 +29,6 @@ function alternarLegendas() {
 
     aplicarLegendas();
 }
-
 
 function aplicarLegendas() {
     const legendasAtivas =
@@ -52,11 +48,9 @@ function aplicarLegendas() {
     }
 }
 
-
 // ==========================================
 // EFEITOS SONOROS
 // ==========================================
-
 function alternarEfeitos() {
     let efeitosAtivos =
         localStorage.getItem("efeitosAtivos") !== "false";
@@ -67,7 +61,6 @@ function alternarEfeitos() {
 
     atualizarBotaoEfeitos();
 }
-
 
 function atualizarBotaoEfeitos() {
     const efeitosAtivos =
@@ -82,10 +75,7 @@ function atualizarBotaoEfeitos() {
     }
 }
 
-
-// Use esta função quando quiser reproduzir um efeito sonoro.
-// Exemplo: tocarEfeito("midia/click.mp3");
-
+// Use tocarEfeito("caminho/do/efeito.mp3") quando quiser reproduzir um efeito.
 function tocarEfeito(arquivo) {
     const efeitosAtivos =
         localStorage.getItem("efeitosAtivos") !== "false";
@@ -97,24 +87,20 @@ function tocarEfeito(arquivo) {
     efeito.play().catch(() => {});
 }
 
-
 // ==========================================
 // TELA CHEIA
 // ==========================================
-
 function alternarTelaCheia() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
     } else {
-        document.exitFullscreen();
+        document.exitFullscreen().catch(() => {});
     }
 }
-
 
 // ==========================================
 // RESTAURAR CONFIGURAÇÕES
 // ==========================================
-
 function restaurarConfiguracoes() {
     localStorage.setItem("musicaMutada", "false");
     localStorage.setItem("volumeMusica", "50");
@@ -122,7 +108,7 @@ function restaurarConfiguracoes() {
     localStorage.setItem("legendasAtivas", "true");
     localStorage.setItem("efeitosAtivos", "true");
 
-    // Atualiza a música
+    // Atualiza as variáveis definidas em musica.js
     musicaMutada = false;
     volumeMusica = 50;
 
@@ -153,11 +139,9 @@ function restaurarConfiguracoes() {
     atualizarBotaoEfeitos();
 }
 
-
 // ==========================================
 // CARREGAR CONFIGURAÇÕES SALVAS
 // ==========================================
-
 document.addEventListener("DOMContentLoaded", () => {
 
     const brilhoSalvo =

@@ -1,112 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Santa Glória</title>
-    <!-- Ligação com o CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
     <!-- TELA INICIAL -->
     <div class="tela-inicial" id="telaInicial">
-
         <div class="conteudo">
-            <!-- Nome do jogo -->
-            <h1 class="titulo"> Santa Gloria </h1>
+            <h1 class="titulo">Santa Gloria</h1>
 
             <!-- MÚSICA DE FUNDO -->
             <audio id="musicaFundo" loop style="display: none;">
-                <source src="midia/audio.mp3" type="audio/mpeg">
+                <source src="assets/audio/audio.mp3" type="audio/mpeg">
                 Seu navegador não suporta o elemento de áudio.
             </audio>
 
             <div class="botoes">
-                <button onclick="novoJogo()"> Novo Jogo </button>
-                <button onclick="abrirComoJogar()"> Como Jogar </button>
-                <button onclick="abrirConfiguracoes()"> Ajustes </button>
-                <button onclick="abrircriadores()"> Criadores </button>
+                <button onclick="novoJogo()">Novo Jogo</button>
+                <button onclick="abrirComoJogar()">Como Jogar</button>
+                <button onclick="abrirConfiguracoes()">Ajustes</button>
+                <button onclick="abrircriadores()">Criadores</button>
             </div>
-
         </div>
-
     </div>
-
 
     <!-- JANELA COMO JOGAR -->
     <div class="janela-como-jogar" id="janelaComoJogar">
-
         <div class="caixa-como-jogar">
             <h2>Como Jogar</h2>
             <!-- A explicação do jogo será adicionada aqui depois. -->
         </div>
-
     </div>
-
 
     <!-- TELA DE CONFIGURAÇÕES -->
     <div class="tela-configuracoes" id="telaConfiguracoes">
-        <button class="botao-fechar" onclick="voltarInicio()"> X </button>
+        <button class="botao-fechar" onclick="voltarInicio()">X</button>
+
         <div class="conteudo-configuracoes">
+            <h1 class="titulo-configuracoes">Ajustes</h1>
 
-            <h1 class="titulo-configuracoes"> Ajustes </h1>
+            <button class="botao-musica" id="botaoMusica" onclick="alternarMusica()">
+                🔊 Música: Ligada
+            </button>
 
-            <!-- BOTÃO DE MÚSICA -->
-<button class="botao-musica" id="botaoMusica" onclick="alternarMusica()"> 🔊 Música: Ligada </button>
+            <div class="configuracao-item">
+                <label for="controleVolume">
+                    Volume da música:
+                    <span id="valorVolume">50%</span>
+                </label>
+                <input type="range" id="controleVolume" min="0" max="100" value="50"
+                       oninput="alterarVolume(this.value)">
+            </div>
 
+            <div class="configuracao-item">
+                <label for="controleBrilho">
+                    Brilho da tela:
+                    <span id="valorBrilho">100%</span>
+                </label>
+                <input type="range" id="controleBrilho" min="50" max="120" value="100"
+                       oninput="alterarBrilho(this.value)">
+            </div>
 
-<!-- VOLUME DA MÚSICA -->
-<div class="configuracao-item">
+            <button class="botao-configuracao" id="botaoLegendas" onclick="alternarLegendas()">
+                Legendas: Ligadas
+            </button>
 
-    <label for="controleVolume">
-        Volume da música:
-        <span id="valorVolume">50%</span>
-    </label>
+            <button class="botao-configuracao" id="botaoEfeitos" onclick="alternarEfeitos()">
+                Efeitos sonoros: Ligados
+            </button>
 
-    <input type="range" id="controleVolume" min="0" max="100" value="50" oninput="alterarVolume(this.value)">
-
-</div>
-
-
-<!-- BRILHO DA TELA -->
-<div class="configuracao-item">
-
-    <label for="controleBrilho">
-        Brilho da tela:
-        <span id="valorBrilho">100%</span>
-    </label>
-
-    <input type="range" id="controleBrilho" min="50" max="120" value="100" oninput="alterarBrilho(this.value)">
-
-</div>
-
-
-<!-- LEGENDAS -->
-<button class="botao-configuracao" id="botaoLegendas" onclick="alternarLegendas()"> Legendas: Ligadas </button>
-
-
-<!-- EFEITOS SONOROS -->
-<button class="botao-configuracao" id="botaoEfeitos" onclick="alternarEfeitos()"> Efeitos sonoros: Ligados </button>
-
-
-<!-- TELA CHEIA -->
-<button class="botao-configuracao" onclick="alternarTelaCheia()"> Tela cheia </button>
-
-
-<!-- RESTAURAR CONFIGURAÇÕES -->
-<button class="botao-configuracao" onclick="restaurarConfiguracoes()"> Restaurar padrões </button>
-
+            <button class="botao-configuracao" onclick="alternarTelaCheia()">Tela cheia</button>
+            <button class="botao-configuracao" onclick="restaurarConfiguracoes()">Restaurar padrões</button>
         </div>
-
     </div>
-
 
     <!-- JANELA CRIADORES -->
     <div class="Criadores" id="criadores">
-
         <div class="caixa-criadores">
             <h2>Criadores:</h2>
             <ul>
@@ -121,33 +94,25 @@
                 <li>Yasmin Mascarenhas</li>
             </ul>
         </div>
-
     </div>
 
-
-    <!-- TELA DO JOGO -->
+    <!-- TELA DO JOGO / VÍDEO DE INTRODUÇÃO -->
     <div class="tela-jogo" id="telaJogo">
+        <button class="botao-fechar" id="botaoFecharJogo"
+                onclick="irParaHistoria()"> &gt; </button>
 
-        <button class="botao-fechar" id="botaoFecharJogo" onclick="irParaHistoria()"> > </button>
-
-        <!-- Vídeo -->
         <div class="video-container">
-
-            <video id="meuVideo" width="1560" playsinline>
-                <source src="midia/contagem.mp4" type="video/mp4"> Seu navegador não suporta a tag de vídeo. </video>
-
-                
-
+            <video id="meuVideo" playsinline>
+                <source src="assets/videos/contagem.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
         </div>
-
     </div>
 
-
-    <!-- Ligação com o JavaScript -->
-    <script src="musica.js"></script>
-    <script src="script.js"></script>
-    <script src="configuracoes.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="js/sistemas/musica.js"></script>
+    <script src="js/menu/script.js"></script>
+    <script src="js/sistemas/configuracoes.js"></script>
 
 </body>
-
 </html>
