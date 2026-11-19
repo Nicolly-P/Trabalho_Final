@@ -11,7 +11,7 @@ A aplicação permite que o usuário se aventure na história de Amélia, que en
 
 ## 🎯 Objetivos
 
-- Inovar no mercado de jogos.
+- Inovar o mercado de jogos.
 - Aplicar conhecimentos do curso técnico Desenvolvimento de Sistemas.
 - Desenvolver habilidades de interação entre elementos 2D e 3D.
 - Resolver a falta de conhecimento acerca da história brasileira.
