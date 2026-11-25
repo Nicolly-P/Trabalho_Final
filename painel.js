@@ -1,20 +1,42 @@
+
 let senha = "";
+
+// CHAVE QUE IDENTIFICA O PAINEL DESTRANCADO
+const chavePainel = "painelSantaGloriaDesbloqueado";
+
+/* ==========================================
+   VERIFICAR SE O PAINEL JÁ FOI DESTRANCADO
+   ========================================== */
+
+function painelDesbloqueado() {
+    return sessionStorage.getItem(chavePainel) === "true";
+}
 
 /* ==========================================
    ABRIR PAINEL
-========================================== */
+   ========================================== */
+
 function abrirPainel() {
 
+    // SE JÁ ESTIVER DESTRANCADO, IR PARA OUTRA PÁGINA
+    if (painelDesbloqueado()) {
+
+        window.location.href = "porta.html";
+        return;
+
+    }
+
+    // CASO AINDA ESTEJA TRANCADO, ABRIR TECLADO
     document.getElementById("quadroOverlay").style.display = "flex";
 
-    // MOSTRAR OBJETIVO AO CLICAR NO PAINEL
     mostrarObjetivo();
 
 }
 
 /* ==========================================
    FECHAR PAINEL
-========================================== */
+   ========================================== */
+
 function fecharPainel() {
 
     document.getElementById("quadroOverlay").style.display = "none";
@@ -25,7 +47,8 @@ function fecharPainel() {
 
 /* ==========================================
    DIGITAR SENHA
-========================================== */
+   ========================================== */
+
 function digitar(numero) {
 
     if (senha.length >= 6) return;
@@ -36,28 +59,41 @@ function digitar(numero) {
 
     if (senha.length === 6) {
 
+        const senhaDigitada = senha;
+
         setTimeout(() => {
 
-            if (senha === "162940") {
+            if (senhaDigitada === "162940") {
 
-                alert("PORTA DESTRANCADA!");
+                // SALVAR O DESBLOQUEIO
+                sessionStorage.setItem(chavePainel, "true");
+
+                // MOSTRAR O SÍMBOLO DENTRO DO PAINEL
+                const wrapper = document.querySelector(".quadro-grande-wrapper");
+
+                wrapper.classList.add("desbloqueado");
+
+                // LIMPAR A SENHA
+                limpar();
 
             } else {
 
                 alert("SENHA INCORRETA!");
 
-            }
+                limpar();
 
-            limpar();
+            }
 
         }, 300);
 
     }
+
 }
 
 /* ==========================================
    LIMPAR SENHA
-========================================== */
+   ========================================== */
+
 function limpar() {
 
     senha = "";
@@ -68,7 +104,8 @@ function limpar() {
 
 /* ==========================================
    ABRIR PAPEL
-========================================== */
+   ========================================== */
+
 function abrirPapel() {
 
     document.getElementById("papelOverlay").style.display = "flex";
@@ -77,7 +114,8 @@ function abrirPapel() {
 
 /* ==========================================
    FECHAR PAPEL
-========================================== */
+   ========================================== */
+
 function fecharPapel() {
 
     document.getElementById("papelOverlay").style.display = "none";
@@ -86,7 +124,8 @@ function fecharPapel() {
 
 /* ==========================================
    FECHAR COM ESC
-========================================== */
+   ========================================== */
+
 document.addEventListener("keydown", function(event) {
 
     if (event.key === "Escape") {

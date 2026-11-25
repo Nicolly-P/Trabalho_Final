@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Santa Glória - Nova Cena</title>
+
+    <link rel="stylesheet" href="../css/porta.css">
+</head>
+
+<body>
+
+    <!-- CENÁRIO PRINCIPAL -->
+    <main id="cenarioPorta">
+
+        <!-- QUADRO CLICÁVEL -->
+        <button type="button" class="elemento-clicavel quadro" onclick="abrirZoomQuadro()" aria-label="Examinar quadro de avisos">
+            <img src="../assets/imagens/quadro.png" alt="" draggable="false">
+        </button>
+
+        <!-- APROXIMAÇÃO DO QUADRO -->
+<div id="zoomQuadro" class="zoom-quadro">
+
+    <div class="fundo-zoom" onclick="fecharZoomQuadro()"></div>
+
+    <div class="conteudo-zoom">
+        <button class="fechar-zoom" onclick="fecharZoomQuadro()"> X </button>
+        <img src="../assets/imagens/qua.zoom.png" alt="Quadro ampliado">
+
+    </div>
+</div>
+
+        <!-- ARMÁRIOS CLICÁVEIS -->
+        <button type="button" class="elemento-clicavel armarios" onclick="abrirCadeado()" aria-label="Examinar armários">
+
+            <img src="../assets/imagens/armarios.png" alt="Armários" draggable="false">
+
+        </button>
+
+        <!-- PRANCHETA CLICÁVEL -->
+<button class="elemento-clicavel prancheta"
+        onclick="abrirZoomPrancheta()">
+
+    <img src="../assets/imagens/prancheta.png"
+         alt="Prancheta">
+
+</button>
+
+<!-- ZOOM DA PRANCHETA -->
+<div id="zoomPrancheta" class="zoom-quadro">
+
+    <div class="fundo-zoom"
+         onclick="fecharZoomPrancheta()">
+    </div>
+
+    <div class="conteudo-zoom">
+
+        <button class="fechar-zoom"
+                onclick="fecharZoomPrancheta()">
+            ×
+        </button>
+
+        <img src="../assets/imagens/prancheta.png"
+             alt="Prancheta ampliada">
+
+    </div>
+
+</div>
+
+<!-- CADEADO DO ARMÁRIO -->
+<div id="cadeadoArmario" class="cadeado-armario">
+
+    <div class="fundo-cadeado" onclick="fecharCadeado()"></div>
+
+    <div class="conteudo-cadeado">
+
+        <button class="fechar-cadeado" onclick="fecharCadeado()">×</button>
+
+        <h2>Cadeado do Armário</h2>
+        <p>Insira a senha de quatro números.</p>
+
+        <div class="roletas">
+
+            <!-- PRIMEIRO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(0, -1)">▲</button>
+                <span id="numero0">0</span>
+                <button onclick="girarNumero(0, 1)">▼</button>
+            </div>
+
+            <!-- SEGUNDO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(1, -1)">▲</button>
+                <span id="numero1">0</span>
+                <button onclick="girarNumero(1, 1)">▼</button>
+            </div>
+
+            <!-- TERCEIRO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(2, -1)">▲</button>
+                <span id="numero2">0</span>
+                <button onclick="girarNumero(2, 1)">▼</button>
+            </div>
+
+            <!-- QUARTO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(3, -1)">▲</button>
+                <span id="numero3">0</span>
+                <button onclick="girarNumero(3, 1)">▼</button>
+            </div>
+
+        </div>
+
+        <button class="confirmar-senha" onclick="verificarSenha()">
+            Confirmar
+        </button>
+
+        <p id="mensagemCadeado"></p>
+
+        <!-- ITEM DISPONÍVEL NO ARMÁRIO -->
+<div id="recompensaArmario" class="recompensa-armario">
+
+    <p>O armário foi destrancado!</p>
+
+    <button class="botao-recolher" onclick="recolherItem()">
+
+        <span>➜</span>
+
+        <small>RECOLHER ITEM</small>
+
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+
+<!-- TELA DE ITEM ADQUIRIDO -->
+<div id="itemAdquirido" class="item-adquirido">
+
+    <div class="fundo-item"></div>
+
+    <div class="conteudo-item">
+
+        <p class="titulo-item">ITEM ADQUIRIDO</p>
+
+        <div class="imagem-item">
+            <img src="../assets/imagens/item.png" alt="Item encontrado">
+        </div>
+
+        <h2 id="nomeItem">Nome do Item</h2>
+
+        <p class="descricao-item">
+            Você encontrou um novo objeto!
+        </p>
+
+        <button onclick="fecharItemAdquirido()">
+            CONTINUAR
+        </button>
+
+    </div>
+
+</div>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/historia/porta.js"></script>
+
+</body>
+</html>

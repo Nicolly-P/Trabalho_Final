@@ -1,0 +1,578 @@
+/* =====================================
+   CONFIGURAÇÕES GERAIS
+   ===================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* =====================================
+   CENÁRIO PRINCIPAL
+   ===================================== */
+#cenarioPorta {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-image: url('../assets/imagens/cen1.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* =====================================
+   ELEMENTOS CLICÁVEIS
+   ===================================== */
+.elemento-clicavel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* IMAGENS DOS ELEMENTOS */
+.elemento-clicavel img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none;
+    transition: filter 0.2s ease;
+}
+
+/* =====================================
+   QUADRO DE AVISOS
+   ===================================== */
+.quadro {
+    clip-path: polygon(
+        35% 20%,
+        55% 20%,
+        55% 43%,
+        35% 43%
+    );
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.quadro:hover img {
+    filter: brightness(1.25);
+}
+
+/* =====================================
+   ARMÁRIOS
+   ===================================== */
+.armarios {
+    clip-path: polygon(
+        4.1% 6.3%,
+        19.4% 6.3%,
+        19.4% 100%,
+        7.2% 100%,
+        4.1% 100%
+    );
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.armarios:hover img {
+    filter: brightness(1.25);
+}
+
+/* =====================================
+   ZOOM DO QUADRO
+   ===================================== */
+.zoom-quadro {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+/* FUNDO ESCURECIDO */
+.fundo-zoom {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+/* CONTEÚDO AMPLIADO */
+.conteudo-zoom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: 85%;
+    max-height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo-zoom img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 85vw;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+/* BOTÃO FECHAR */
+.fechar-zoom {
+    position: absolute;
+    top: -35px;
+    right: -35px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: #222;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.fechar-zoom:hover {
+    background: #555;
+}
+
+/* =====================================
+   PRANCHETA NO CENÁRIO
+   ===================================== */
+
+.elemento-clicavel.prancheta {
+    position: absolute;
+
+    /* POSIÇÃO */
+    left: 74%;
+    top: 45%;
+
+    /* TAMANHO */
+    width: 15%;
+    height: 20%;
+
+    /* INCLINAÇÃO */
+    transform: perspective(700px) rotateX(47deg) rotateZ(-30deg);
+    transform-origin: center bottom;
+
+    z-index: 12;
+
+    overflow: visible;
+}
+
+/* IMAGEM DA PRANCHETA */
+
+.elemento-clicavel.prancheta img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: fill;
+
+    display: block;
+    pointer-events: none;
+
+    transition: filter 0.2s ease;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+
+.elemento-clicavel.prancheta:hover img {
+    filter: brightness(1.2);
+}
+
+/* =====================================
+   CADEADO NUMÉRICO DO ARMÁRIO
+   ===================================== */
+
+.cadeado-armario {
+    display: none;
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 200;
+}
+
+/* FUNDO ESCURECIDO */
+
+.fundo-cadeado {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* PAINEL DO CADEADO */
+
+.conteudo-cadeado {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 420px;
+    max-width: 90%;
+
+    padding: 35px 25px;
+
+    background: #292929;
+
+    border: 2px solid #777;
+    border-radius: 12px;
+
+    box-shadow: 0 0 35px rgba(0,0,0,0.8);
+
+    text-align: center;
+    color: white;
+}
+
+.conteudo-cadeado h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.conteudo-cadeado p {
+    color: #ccc;
+}
+
+/* BOTÃO FECHAR */
+
+.fechar-cadeado {
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+/* ROLETAS */
+
+.roletas {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 30px 0;
+}
+
+.roleta {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 65px;
+    height: 140px;
+
+    background: #111;
+
+    border: 2px solid #888;
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+/* NÚMEROS */
+
+.roleta span {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 55px;
+
+    background: #dedede;
+
+    color: #171717;
+
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* BOTÕES DAS ROLETAS */
+
+.roleta button {
+    width: 100%;
+    height: 40px;
+
+    background: #333;
+
+    border: none;
+
+    color: white;
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.roleta button:hover {
+    background: #555;
+}
+
+/* CONFIRMAR SENHA */
+
+.confirmar-senha {
+    padding: 12px 35px;
+
+    background: #555;
+
+    border: 1px solid #999;
+    border-radius: 6px;
+
+    color: white;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.confirmar-senha:hover {
+    background: #777;
+}
+
+/* MENSAGEM */
+
+#mensagemCadeado {
+    min-height: 22px;
+    margin-bottom: 0;
+
+    font-weight: bold;
+}
+
+/* =====================================
+   RECOMPENSA DO ARMÁRIO
+   ===================================== */
+
+.recompensa-armario {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.recompensa-armario p {
+    color: #85d985;
+    font-size: 15px;
+}
+
+/* BOTÃO DE RECOLHER */
+
+.botao-recolher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    margin: 15px auto 0;
+
+    padding: 10px 25px;
+
+    background: transparent;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+
+    color: white;
+    cursor: pointer;
+
+    animation: indicarItem 1.2s infinite;
+}
+
+.botao-recolher span {
+    font-size: 35px;
+}
+
+.botao-recolher small {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.botao-recolher:hover {
+    background: #444;
+}
+
+@keyframes indicarItem {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =====================================
+   TELA DE ITEM ADQUIRIDO
+   ===================================== */
+
+.item-adquirido {
+    display: none;
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 300;
+
+    align-items: center;
+    justify-content: center;
+}
+
+/* FUNDO ESCURECIDO */
+
+.fundo-item {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.82);
+}
+
+/* CONTEÚDO */
+
+.conteudo-item {
+    position: relative;
+
+    width: 380px;
+    max-width: 85%;
+
+    padding: 30px;
+
+    background: linear-gradient(
+        145deg,
+        #333333,
+        #171717
+    );
+
+    border: 1px solid #b69b63;
+    border-radius: 12px;
+
+    box-shadow: 0 0 35px rgba(0,0,0,0.8);
+
+    text-align: center;
+    color: white;
+
+    animation: aparecerItem 0.5s ease;
+}
+
+/* TÍTULO */
+
+.titulo-item {
+    color: #d8bd80;
+
+    font-size: 19px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    margin-top: 0;
+}
+
+/* IMAGEM DO ITEM */
+
+.imagem-item {
+    width: 180px;
+    height: 180px;
+
+    margin: 20px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(214,190,140,0.4);
+    border-radius: 10px;
+}
+
+.imagem-item img {
+    max-width: 90%;
+    max-height: 90%;
+
+    object-fit: contain;
+
+    filter: drop-shadow(0 0 12px rgba(255,255,255,0.2));
+}
+
+/* NOME E DESCRIÇÃO */
+
+.conteudo-item h2 {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+.descricao-item {
+    color: #bbb;
+    font-size: 14px;
+}
+
+/* BOTÃO CONTINUAR */
+
+.conteudo-item button {
+    margin-top: 20px;
+
+    padding: 11px 30px;
+
+    background: #8b754c;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: background 0.2s;
+}
+
+.conteudo-item button:hover {
+    background: #aa9060;
+}
+
+/* ANIMAÇÃO */
+
+@keyframes aparecerItem {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
