@@ -1,3 +1,4 @@
+
 /* ==========================================
    SISTEMA DE DIÁLOGOS - SANTA GLÓRIA
 ========================================== */
@@ -8,6 +9,10 @@ const imagemPersonagem = document.getElementById("imagemPersonagem");
 const nomePersonagem = document.querySelector(".nome-personagem");
 const textoDialogo = document.querySelector(".texto-dialogo");
 
+// ELEMENTOS DA ESCOLHA
+const opcoesDialogo = document.getElementById("opcoesDialogo");
+const apresentacaoUniforme = document.getElementById("apresentacaoUniforme");
+
 // CONTROLE DA CONVERSA
 let falaAtual = 0;
 let dialogoAtivo = false;
@@ -15,6 +20,7 @@ let dialogoAtivo = false;
 // ==========================================
 // LISTA DE FALAS
 // ==========================================
+
 const falas = [
     {
         nome: "Amélia",
@@ -32,6 +38,7 @@ const falas = [
 // ==========================================
 // MOSTRAR UMA FALA
 // ==========================================
+
 function mostrarFala() {
 
     if (falaAtual >= falas.length) {
@@ -50,7 +57,9 @@ function mostrarFala() {
 // ==========================================
 // INICIAR DIÁLOGO
 // ==========================================
+
 function iniciarDialogo() {
+
     falaAtual = 0;
     dialogoAtivo = true;
 
@@ -62,6 +71,7 @@ function iniciarDialogo() {
 // ==========================================
 // AVANÇAR PARA A PRÓXIMA FALA
 // ==========================================
+
 function proximaFala() {
 
     if (!dialogoAtivo) return;
@@ -74,7 +84,9 @@ function proximaFala() {
 // ==========================================
 // FINALIZAR DIÁLOGO
 // ==========================================
+
 function finalizarDialogo() {
+
     dialogoAtivo = false;
 
     interfaceDialogo.style.display = "none";
@@ -83,13 +95,79 @@ function finalizarDialogo() {
 }
 
 // ==========================================
+// INICIAR ESCOLHA DO UNIFORME
+// ==========================================
+
+function iniciarEscolhaUniforme() {
+
+    dialogoAtivo = false;
+
+    interfaceDialogo.style.display = "block";
+
+    // Esconde a imagem lateral da personagem, se existir
+    if (imagemPersonagem) {
+        imagemPersonagem.style.display = "none";
+    }
+
+    // Mostra o nome e o texto
+    nomePersonagem.textContent = "Amélia";
+
+    textoDialogo.textContent =
+        "Um uniforme... Será que devo experimentar?";
+
+    // Mostra as opções de escolha
+    opcoesDialogo.style.display = "flex";
+}
+
+// ==========================================
+// ESCOLHER UMA OPÇÃO
+// ==========================================
+
+function escolherUniforme(opcao) {
+
+    // Impede que a escolha seja feita novamente
+    opcoesDialogo.style.display = "none";
+
+    // Textos correspondentes às escolhas
+    const escolhas = [
+        "Acho que devo experimentar este uniforme.",
+        "Finalmente, algo que pode me ajudar a passar despercebida."
+    ];
+
+    textoDialogo.textContent = escolhas[opcao];
+
+    // Aguarda um pequeno intervalo antes da apresentação
+    setTimeout(function() {
+
+        interfaceDialogo.style.display = "none";
+
+        apresentacaoUniforme.style.display = "flex";
+
+    }, 900);
+}
+
+// ==========================================
+// FECHAR APRESENTAÇÃO DO UNIFORME
+// ==========================================
+
+function fecharApresentacaoUniforme() {
+
+    apresentacaoUniforme.style.display = "none";
+
+    // Restaura a imagem lateral para os diálogos normais
+    if (imagemPersonagem) {
+        imagemPersonagem.style.display = "";
+    }
+}
+
+// ==========================================
 // AVANÇAR COM CLIQUE
 // ==========================================
+
 document.addEventListener("click", function(event) {
 
     if (!dialogoAtivo) return;
 
-    // Não avança ao interagir com botões, campos ou overlays.
     if (
         event.target.closest("button") ||
         event.target.closest("input") ||
@@ -106,6 +184,7 @@ document.addEventListener("click", function(event) {
 // ==========================================
 // AVANÇAR COM ENTER OU ESPAÇO
 // ==========================================
+
 document.addEventListener("keydown", function(event) {
 
     if (!dialogoAtivo) return;
@@ -130,11 +209,13 @@ document.addEventListener("keydown", function(event) {
 
         proximaFala();
     }
+
 });
 
 // ==========================================
 // AGUARDAR O FADE-IN
 // ==========================================
+
 window.addEventListener("load", function() {
 
     const possuiFade = document.documentElement
@@ -142,8 +223,18 @@ window.addEventListener("load", function() {
 
     const duracaoFade = possuiFade ? 1500 : 0;
 
-    setTimeout(function() {
-        iniciarDialogo();
-    }, duracaoFade);
+    // Só inicia o diálogo automático se a página
+    // tiver a sequência inicial de falas.
+    if (interfaceDialogo && textoDialogo) {
+
+        setTimeout(function() {
+
+            if (!interfaceDialogo.dataset.pularDialogoInicial) {
+                iniciarDialogo();
+            }
+
+        }, duracaoFade);
+
+    }
 
 });

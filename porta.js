@@ -184,9 +184,12 @@ function recolherItem() {
 /* =====================================
    FECHAR TELA DE ITEM ADQUIRIDO
    ===================================== */
-
 function fecharItemAdquirido() {
 
+    // Fecha a tela de item adquirido
     document.getElementById("itemAdquirido").style.display = "none";
+
+    // Inicia a escolha na caixa de diálogo
+    iniciarEscolhaUniforme();
 
 }
