@@ -15,11 +15,17 @@
 
 <body>
 
+<audio id="musicaFundo" loop>
+    <source src="../assets/audio/audio.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
+
     <!-- =====================================
-         CENÁRIO PRINCIPAL
-         ===================================== -->
+        CENÁRIO PRINCIPAL
+        ===================================== -->
 
     <main id="cenarioPorta">
+        
 
         <!-- QUADRO CLICÁVEL -->
         <button
@@ -403,17 +409,15 @@
                 Amélia agora está vestindo seu novo uniforme.
             </p>
 
-            <button
-                type="button"
-                onclick="fecharApresentacaoUniforme()"> CONTINUAR </button>
+            <button onclick="fecharApresentacaoUniforme(event)"> Continuar </button>
 
         </div>
     </div>
 
 
     <!-- =====================================
-     INVENTÁRIO DA PERSONAGEM
-     ===================================== -->
+    INVENTÁRIO DA PERSONAGEM
+    ===================================== -->
 
 <div id="inventarioJogador" class="inventario-jogador">
 
@@ -444,11 +448,18 @@
 
 </div>
 
+<!-- SOM DE TRANSIÇÃO -->
+<audio id="somTransicao">
+    <source src="../assets/audio/som-transicao.mp3" type="audio/mpeg">
+</audio>
+
     <!-- =====================================
         JAVASCRIPT
         ===================================== -->
 
     <!-- SISTEMA DE DIÁLOGOS -->
+    <script src="../js/sistemas/musica.js"></script>
+    <script src="../js/sistemas/configuracoes.js"></script>
     <script src="../js/historia/dialogo.js"></script>
     <script src="../js/sistemas/inventario.js"></script>
     <script src="../js/historia/porta.js"></script>

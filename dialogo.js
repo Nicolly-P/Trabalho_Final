@@ -17,11 +17,14 @@ const apresentacaoUniforme = document.getElementById("apresentacaoUniforme");
 let falaAtual = 0;
 let dialogoAtivo = false;
 
+// Indica que o diálogo após o uniforme terminou
+let dialogoUniformeFinalizado = false;
+
 // ==========================================
-// LISTA DE FALAS
+// LISTA DE FALAS INICIAIS
 // ==========================================
 
-const falas = [
+let falas = [
     {
         nome: "Amélia",
         imagem: "../assets/imagens/personagem.png",
@@ -50,8 +53,24 @@ function mostrarFala() {
 
     nomePersonagem.textContent = fala.nome;
     textoDialogo.textContent = fala.texto;
-    imagemPersonagem.src = fala.imagem;
-    imagemPersonagem.alt = fala.nome;
+
+    if (imagemPersonagem) {
+        imagemPersonagem.src = fala.imagem;
+        imagemPersonagem.alt = fala.nome;
+    }
+}
+
+// ==========================================
+// CONTROLAR VISIBILIDADE DO INVENTÁRIO
+// ==========================================
+
+function controlarInventario(ocultar) {
+
+    const inventario = document.getElementById("inventarioJogador");
+
+    if (!inventario) return;
+
+    inventario.style.display = ocultar ? "none" : "";
 }
 
 // ==========================================
@@ -66,6 +85,131 @@ function iniciarDialogo() {
     interfaceDialogo.style.display = "block";
 
     mostrarFala();
+}
+
+// ==========================================
+// DIÁLOGOS PERSONALIZADOS
+// ==========================================
+function iniciarDialogoPersonalizado(novasFalas) {
+
+    // Substitui a lista de falas
+    falas = [...novasFalas];
+
+    falaAtual = 0;
+    dialogoAtivo = true;
+
+    // Mantém o inventário escondido
+    controlarInventario(true);
+
+    // Esconde as opções antigas
+    if (opcoesDialogo) {
+        opcoesDialogo.style.display = "none";
+    }
+
+    // Atualiza o conteúdo antes de mostrar a interface
+    const fala = falas[0];
+
+    nomePersonagem.textContent = fala.nome;
+    textoDialogo.textContent = fala.texto;
+
+    if (imagemPersonagem) {
+        imagemPersonagem.src = fala.imagem;
+        imagemPersonagem.alt = fala.nome;
+        imagemPersonagem.style.display = "block";
+    }
+
+    // Só agora mostra a interface
+    interfaceDialogo.style.display = "block";
+}
+
+/* ==========================================
+   REPRODUZIR SOM E INICIAR NOVO DIÁLOGO
+========================================== */
+
+function reproduzirSomEIniciarDialogo() {
+
+    const arquivoSom = "../assets/audio/porta.mp3";
+
+    // Mantém o inventário escondido
+    controlarInventario(true);
+
+    // Esconde a interface de diálogo durante o áudio
+    interfaceDialogo.style.display = "none";
+    dialogoAtivo = false;
+
+    // Verifica se os efeitos sonoros estão ativados
+    const efeitosAtivos =
+        localStorage.getItem("efeitosAtivos") !== "false";
+
+    // Se os efeitos estiverem desligados, continua imediatamente
+    if (!efeitosAtivos) {
+        iniciarProximoDialogo();
+        return;
+    }
+
+    // Cria o áudio
+    const som = new Audio(arquivoSom);
+
+    som.preload = "auto";
+
+    // Só inicia o próximo diálogo quando o áudio terminar
+    som.addEventListener("ended", function() {
+
+        iniciarProximoDialogo();
+
+    }, { once: true });
+
+    // Informa no console caso exista algum problema com o arquivo
+    som.addEventListener("error", function() {
+
+        console.error(
+            "Não foi possível reproduzir o efeito sonoro:",
+            arquivoSom,
+            som.error
+        );
+
+    }, { once: true });
+
+    // Inicia a reprodução
+    som.play().catch(function(erro) {
+
+        console.error("Erro ao iniciar o áudio:", erro);
+
+    });
+}
+// ==========================================
+// PRÓXIMO DIÁLOGO
+// ==========================================
+function iniciarProximoDialogo() {
+
+    const imagemIara = "../assets/imagens/Iara.png";
+
+    const novasFalas = [
+        {
+            nome: "???",
+            imagem: imagemIara,
+            texto: "..."
+        },
+
+        {
+            nome: "???",
+            imagem: imagemIara,
+            texto: "O que você ta fazendo aqui?"
+        }
+    ];
+
+    const imagemTemporaria = new Image();
+
+    imagemTemporaria.onload = function() {
+        iniciarDialogoPersonalizado(novasFalas);
+    };
+
+    imagemTemporaria.onerror = function() {
+        console.error("Não foi possível carregar a imagem da Iara.");
+        iniciarDialogoPersonalizado(novasFalas);
+    };
+
+    imagemTemporaria.src = imagemIara;
 }
 
 // ==========================================
@@ -92,6 +236,21 @@ function finalizarDialogo() {
     interfaceDialogo.style.display = "none";
 
     falaAtual = 0;
+
+    // Se terminou o diálogo após o uniforme,
+    // reproduz o som antes do próximo diálogo
+    if (dialogoUniformeFinalizado) {
+
+        dialogoUniformeFinalizado = false;
+
+        reproduzirSomEIniciarDialogo();
+
+    } else {
+
+        // Só mostra o inventário quando a conversa terminar
+        controlarInventario(false);
+
+    }
 }
 
 // ==========================================
@@ -104,7 +263,7 @@ function iniciarEscolhaUniforme() {
 
     interfaceDialogo.style.display = "block";
 
-    // Esconde a imagem lateral da personagem, se existir
+    // Esconde a imagem lateral da personagem
     if (imagemPersonagem) {
         imagemPersonagem.style.display = "none";
     }
@@ -115,7 +274,7 @@ function iniciarEscolhaUniforme() {
     textoDialogo.textContent =
         "Um uniforme... Será que devo experimentar?";
 
-    // Mostra as opções de escolha
+    // Mostra as opções
     opcoesDialogo.style.display = "flex";
 }
 
@@ -128,7 +287,6 @@ function escolherUniforme(opcao) {
     // Impede que a escolha seja feita novamente
     opcoesDialogo.style.display = "none";
 
-    // Textos correspondentes às escolhas
     const escolhas = [
         "Acho que devo experimentar este uniforme.",
         "Finalmente, algo que pode me ajudar a passar despercebida."
@@ -136,7 +294,7 @@ function escolherUniforme(opcao) {
 
     textoDialogo.textContent = escolhas[opcao];
 
-    // Aguarda um pequeno intervalo antes da apresentação
+    // Aguarda antes de mostrar a apresentação
     setTimeout(function() {
 
         interfaceDialogo.style.display = "none";
@@ -150,20 +308,32 @@ function escolherUniforme(opcao) {
 // FECHAR APRESENTAÇÃO DO UNIFORME
 // ==========================================
 
-function fecharApresentacaoUniforme() {
+function fecharApresentacaoUniforme(event) {
 
+    // Impede que o clique continue até o documento
+    if (event) {
+        event.stopPropagation();
+    }
+
+    // Fecha a apresentação
     apresentacaoUniforme.style.display = "none";
 
-    // Restaura a imagem lateral para os diálogos normais
-    if (imagemPersonagem) {
-        imagemPersonagem.style.display = "";
-    }
+    const falasDepoisUniforme = [
+        {
+            nome: "Amélia",
+            imagem: "../assets/imagens/personagem.png",
+            texto: "Finalmente, agora posso segu-"
+        }
+    ];
+
+    dialogoUniformeFinalizado = true;
+
+    iniciarDialogoPersonalizado(falasDepoisUniforme);
 }
 
 // ==========================================
 // AVANÇAR COM CLIQUE
 // ==========================================
-
 document.addEventListener("click", function(event) {
 
     if (!dialogoAtivo) return;
@@ -172,7 +342,8 @@ document.addEventListener("click", function(event) {
         event.target.closest("button") ||
         event.target.closest("input") ||
         event.target.closest(".overlay") ||
-        event.target.closest(".papel-overlay")
+        event.target.closest(".papel-overlay") ||
+        event.target.closest("#apresentacaoUniforme")
     ) {
         return;
     }
@@ -224,7 +395,7 @@ window.addEventListener("load", function() {
     const duracaoFade = possuiFade ? 1500 : 0;
 
     // Só inicia o diálogo automático se a página
-    // tiver a sequência inicial de falas.
+    // tiver a sequência inicial de falas
     if (interfaceDialogo && textoDialogo) {
 
         setTimeout(function() {

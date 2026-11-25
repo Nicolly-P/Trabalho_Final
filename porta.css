@@ -588,7 +588,7 @@ body {
 .imagem-personagem {
     position: absolute;
     right: -15%;
-    bottom: 0;
+    bottom: 10;
 
     height: 200%;
     max-width: 100%;
