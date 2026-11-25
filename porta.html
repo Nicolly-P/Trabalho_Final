@@ -10,6 +10,7 @@
 
     <!-- CSS DA CENA -->
     <link rel="stylesheet" href="../css/porta.css">
+    <link rel="stylesheet" href="../css/inventario.css">
 </head>
 
 <body>
@@ -411,13 +412,45 @@
 
 
     <!-- =====================================
+     INVENTÁRIO DA PERSONAGEM
+     ===================================== -->
+
+<div id="inventarioJogador" class="inventario-jogador">
+
+    <div class="inventario-cabecalho">
+
+        <span>INVENTÁRIO</span>
+
+        <span id="contadorInventario">0 itens</span>
+
+    </div>
+
+    <div class="inventario-conteudo">
+
+        <div
+            id="listaItensInventario"
+            class="lista-itens-inventario">
+        </div>
+
+        <p
+            id="descricaoItemInventario"
+            class="descricao-item-inventario">
+
+            Selecione um item para visualizar sua descrição.
+
+        </p>
+
+    </div>
+
+</div>
+
+    <!-- =====================================
         JAVASCRIPT
         ===================================== -->
 
     <!-- SISTEMA DE DIÁLOGOS -->
     <script src="../js/historia/dialogo.js"></script>
-
-    <!-- SISTEMA DA CENA E INTERAÇÕES -->
+    <script src="../js/sistemas/inventario.js"></script>
     <script src="../js/historia/porta.js"></script>
 
 </body>

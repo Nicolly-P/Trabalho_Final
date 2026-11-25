@@ -1,0 +1,193 @@
+
+/* =====================================
+   INVENTÁRIO DA PERSONAGEM
+   ===================================== */
+
+.inventario-jogador {
+    position: fixed;
+
+    bottom: 2%;
+    left: 3%;
+
+    width: 94%;
+    min-height: 105px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px 16px;
+
+    background: rgba(20, 18, 25, 0.94);
+
+    border: 1px solid #9c87ad;
+    border-radius: 10px;
+
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+
+    color: white;
+
+    z-index: 40;
+
+    box-sizing: border-box;
+}
+
+/* O inventário desaparece quando uma interface abre */
+
+.inventario-jogador[hidden] {
+    display: none !important;
+}
+
+/* =====================================
+   CABEÇALHO
+   ===================================== */
+
+.inventario-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+
+    color: #d8c3e8;
+
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+/* =====================================
+   ÁREA DOS ITENS
+   ===================================== */
+
+.inventario-conteudo {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    min-width: 0;
+}
+
+.lista-itens-inventario {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    flex: 1;
+    min-width: 0;
+
+    padding-bottom: 3px;
+}
+
+/* =====================================
+   ESPAÇOS DOS ITENS
+   ===================================== */
+
+.item-inventario,
+.espaco-vazio-inventario {
+    flex: 0 0 65px;
+
+    width: 65px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(65, 55, 75, 0.65);
+
+    border: 1px solid #82718f;
+    border-radius: 6px;
+
+    box-sizing: border-box;
+}
+
+.item-inventario {
+    padding: 4px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.item-inventario:hover {
+    background: rgba(120, 95, 145, 0.8);
+
+    border-color: #d8c3e8;
+
+    transform: translateY(-3px);
+}
+
+.item-inventario img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+/* Espaços ainda não ocupados */
+
+.espaco-vazio-inventario {
+    border-style: dashed;
+
+    opacity: 0.45;
+}
+
+/* =====================================
+   DESCRIÇÃO DO ITEM
+   ===================================== */
+
+.descricao-item-inventario {
+    width: 30%;
+    min-width: 150px;
+
+    margin: 0;
+
+    padding-left: 12px;
+
+    border-left: 1px solid #82718f;
+
+    color: #d4cbdc;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* =====================================
+   RESPONSIVIDADE
+   ===================================== */
+
+@media (max-width: 700px) {
+
+    .inventario-jogador {
+        left: 2%;
+        width: 96%;
+
+        padding: 8px;
+    }
+
+    .inventario-conteudo {
+        gap: 8px;
+    }
+
+    .item-inventario,
+    .espaco-vazio-inventario {
+        flex-basis: 48px;
+
+        width: 48px;
+        height: 45px;
+    }
+
+    .descricao-item-inventario {
+        width: 35%;
+        min-width: 100px;
+
+        font-size: 10px;
+    }
+
+}
