@@ -112,7 +112,6 @@ function iniciarDialogoPersonalizado(novasFalas) {
         opcoesDialogo.style.display = "none";
     }
 
-    // Atualiza o conteúdo antes de mostrar a interface
     const fala = falas[0];
 
     nomePersonagem.textContent = fala.nome;
@@ -153,26 +152,36 @@ function reproduzirSomEIniciarDialogo() {
 
     som.preload = "auto";
 
-    som.addEventListener("ended", function() {
+    let dialogoIniciado = false;
+
+    function continuarConversa() {
+
+        if (dialogoIniciado) return;
+
+        dialogoIniciado = true;
         iniciarProximoDialogo();
-    }, { once: true });
+    }
+
+    som.addEventListener("ended", continuarConversa, { once: true });
 
     som.addEventListener("error", function() {
+
         console.error(
             "Não foi possível reproduzir o efeito sonoro:",
             arquivoSom,
             som.error
         );
 
-        // Continua a conversa mesmo se o áudio apresentar erro
-        iniciarProximoDialogo();
+        continuarConversa();
+
     }, { once: true });
 
     som.play().catch(function(erro) {
+
         console.error("Erro ao iniciar o áudio:", erro);
 
-        // Continua a conversa caso o navegador bloqueie o áudio
-        iniciarProximoDialogo();
+        continuarConversa();
+
     });
 }
 
@@ -186,6 +195,7 @@ function iniciarProximoDialogo() {
     const imagemIara = "../assets/imagens/Iara.png";
 
     etapaConversa = 0;
+    escolhaAmelia = 0;
 
     const novasFalas = [
         {
@@ -226,26 +236,56 @@ function proximaFala() {
 
     falaAtual++;
 
-    // Verifica se as falas atuais terminaram
     if (falaAtual >= falas.length) {
 
-        // Primeira etapa: mostrar primeira escolha
-        if (etapaConversa === 0) {
-            mostrarEscolhasAmelia();
-            return;
-        }
+        /*
+           CORREÇÃO PRINCIPAL:
 
-        // Segunda etapa: mostrar segunda escolha
-        if (etapaConversa === 1) {
-            mostrarEscolhasAmelia();
-            return;
-        }
+           Se Amélia acabou de terminar a fala após
+           colocar o uniforme, finalizamos esse diálogo
+           imediatamente.
 
-        // Terceira etapa: encerrar a conversa
-        if (etapaConversa === 2) {
+           Isso impede que a etapaConversa faça aparecer
+           as opções antes da reprodução do áudio.
+        */
+
+        if (dialogoUniformeFinalizado) {
+
             finalizarDialogo();
+
             return;
         }
+
+
+        // PRIMEIRA ETAPA DA CONVERSA COM IARA
+        if (etapaConversa === 0) {
+
+            mostrarEscolhasAmelia();
+
+            return;
+        }
+
+
+        // SEGUNDA ETAPA DA CONVERSA COM IARA
+        if (etapaConversa === 1) {
+
+            mostrarEscolhasAmelia();
+
+            return;
+        }
+
+
+        // TERCEIRA ETAPA DA CONVERSA COM IARA
+        if (etapaConversa === 2) {
+
+            mostrarEscolhasAmelia();
+
+            return;
+        }
+
+        finalizarDialogo();
+
+        return;
     }
 
     mostrarFala();
@@ -302,6 +342,18 @@ function mostrarEscolhasAmelia() {
             </button>
         `;
     }
+
+    // TERCEIRA ETAPA DE ESCOLHAS
+else if (etapaConversa === 2) {
+
+    textoDialogo.textContent = "O que devo fazer?";
+
+    opcoesDialogo.innerHTML = `
+        <button type="button" onclick="escolherRespostaAmelia(0)">
+            Seguir Iara
+        </button>
+    `;
+}
 
     opcoesDialogo.style.display = "flex";
     interfaceDialogo.style.display = "block";
@@ -365,12 +417,21 @@ function escolherRespostaAmelia(opcao) {
 
         return;
     }
+
+    // TERCEIRA ESCOLHA
+    if (etapaConversa === 2) {
+
+        seguirIara();
+
+        return;
+    }
 }
 
 
 // ==========================================
 // FINALIZAR DIÁLOGO
 // ==========================================
+
 function finalizarDialogo() {
 
     dialogoAtivo = false;
@@ -379,8 +440,6 @@ function finalizarDialogo() {
 
     falaAtual = 0;
 
-    // Se terminou o diálogo após o uniforme,
-    // reproduz o som antes do próximo diálogo
     if (dialogoUniformeFinalizado) {
 
         dialogoUniformeFinalizado = false;
@@ -545,3 +604,52 @@ window.addEventListener("load", function() {
     }
 
 });
+
+// ==========================================
+// SEGUIR IARA E IR PARA A PRÓXIMA CENA
+// ==========================================
+
+function seguirIara() {
+
+    dialogoAtivo = false;
+
+    controlarInventario(true);
+
+    interfaceDialogo.style.display = "none";
+
+    const transicao = document.getElementById("transicaoCena");
+    const somPassos = document.getElementById("somPassos");
+
+    // Escurece a tela lentamente
+    transicao.classList.add("ativa");
+
+    // Aguarda o escurecimento
+    setTimeout(function() {
+
+        if (!somPassos) {
+            window.location.href = "corredor.html";
+            return;
+        }
+
+        somPassos.currentTime = 0;
+
+        // Quando o áudio terminar, abre a próxima cena
+        somPassos.addEventListener("ended", function() {
+            window.location.href = "corredor.html";
+        }, { once: true });
+
+        // Se houver erro no áudio, continua mesmo assim
+        somPassos.addEventListener("error", function() {
+            window.location.href = "corredor.html";
+        }, { once: true });
+
+        somPassos.play().catch(function(erro) {
+
+            console.error("Erro ao reproduzir o som de passos:", erro);
+
+            window.location.href = "corredor.html";
+
+        });
+
+    }, 1500);
+}
