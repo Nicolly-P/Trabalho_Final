@@ -16,9 +16,11 @@ const apresentacaoUniforme = document.getElementById("apresentacaoUniforme");
 // CONTROLE DA CONVERSA
 let falaAtual = 0;
 let dialogoAtivo = false;
-
-// Indica que o diálogo após o uniforme terminou
 let dialogoUniformeFinalizado = false;
+
+let escolhaAmelia = 0;
+let etapaConversa = 0;
+
 
 // ==========================================
 // LISTA DE FALAS INICIAIS
@@ -37,6 +39,7 @@ let falas = [
         texto: "Espera... O que é aquilo na porta?"
     }
 ];
+
 
 // ==========================================
 // MOSTRAR UMA FALA
@@ -60,6 +63,7 @@ function mostrarFala() {
     }
 }
 
+
 // ==========================================
 // CONTROLAR VISIBILIDADE DO INVENTÁRIO
 // ==========================================
@@ -73,6 +77,7 @@ function controlarInventario(ocultar) {
     inventario.style.display = ocultar ? "none" : "";
 }
 
+
 // ==========================================
 // INICIAR DIÁLOGO
 // ==========================================
@@ -82,26 +87,27 @@ function iniciarDialogo() {
     falaAtual = 0;
     dialogoAtivo = true;
 
+    controlarInventario(true);
+
     interfaceDialogo.style.display = "block";
 
     mostrarFala();
 }
 
+
 // ==========================================
 // DIÁLOGOS PERSONALIZADOS
 // ==========================================
+
 function iniciarDialogoPersonalizado(novasFalas) {
 
-    // Substitui a lista de falas
     falas = [...novasFalas];
 
     falaAtual = 0;
     dialogoAtivo = true;
 
-    // Mantém o inventário escondido
     controlarInventario(true);
 
-    // Esconde as opções antigas
     if (opcoesDialogo) {
         opcoesDialogo.style.display = "none";
     }
@@ -118,71 +124,68 @@ function iniciarDialogoPersonalizado(novasFalas) {
         imagemPersonagem.style.display = "block";
     }
 
-    // Só agora mostra a interface
     interfaceDialogo.style.display = "block";
 }
 
-/* ==========================================
-   REPRODUZIR SOM E INICIAR NOVO DIÁLOGO
-========================================== */
+
+// ==========================================
+// REPRODUZIR SOM E INICIAR NOVO DIÁLOGO
+// ==========================================
 
 function reproduzirSomEIniciarDialogo() {
 
     const arquivoSom = "../assets/audio/porta.mp3";
 
-    // Mantém o inventário escondido
     controlarInventario(true);
 
-    // Esconde a interface de diálogo durante o áudio
     interfaceDialogo.style.display = "none";
     dialogoAtivo = false;
 
-    // Verifica se os efeitos sonoros estão ativados
     const efeitosAtivos =
         localStorage.getItem("efeitosAtivos") !== "false";
 
-    // Se os efeitos estiverem desligados, continua imediatamente
     if (!efeitosAtivos) {
         iniciarProximoDialogo();
         return;
     }
 
-    // Cria o áudio
     const som = new Audio(arquivoSom);
 
     som.preload = "auto";
 
-    // Só inicia o próximo diálogo quando o áudio terminar
     som.addEventListener("ended", function() {
-
         iniciarProximoDialogo();
-
     }, { once: true });
 
-    // Informa no console caso exista algum problema com o arquivo
     som.addEventListener("error", function() {
-
         console.error(
             "Não foi possível reproduzir o efeito sonoro:",
             arquivoSom,
             som.error
         );
 
+        // Continua a conversa mesmo se o áudio apresentar erro
+        iniciarProximoDialogo();
     }, { once: true });
 
-    // Inicia a reprodução
     som.play().catch(function(erro) {
-
         console.error("Erro ao iniciar o áudio:", erro);
 
+        // Continua a conversa caso o navegador bloqueie o áudio
+        iniciarProximoDialogo();
     });
 }
+
+
 // ==========================================
-// PRÓXIMO DIÁLOGO
+// INICIAR CONVERSA COM IARA
 // ==========================================
+
 function iniciarProximoDialogo() {
 
     const imagemIara = "../assets/imagens/Iara.png";
+
+    etapaConversa = 0;
 
     const novasFalas = [
         {
@@ -194,7 +197,7 @@ function iniciarProximoDialogo() {
         {
             nome: "???",
             imagem: imagemIara,
-            texto: "O que você ta fazendo aqui?"
+            texto: "Por que você está aqui?"
         }
     ];
 
@@ -212,6 +215,7 @@ function iniciarProximoDialogo() {
     imagemTemporaria.src = imagemIara;
 }
 
+
 // ==========================================
 // AVANÇAR PARA A PRÓXIMA FALA
 // ==========================================
@@ -222,13 +226,151 @@ function proximaFala() {
 
     falaAtual++;
 
+    // Verifica se as falas atuais terminaram
+    if (falaAtual >= falas.length) {
+
+        // Primeira etapa: mostrar primeira escolha
+        if (etapaConversa === 0) {
+            mostrarEscolhasAmelia();
+            return;
+        }
+
+        // Segunda etapa: mostrar segunda escolha
+        if (etapaConversa === 1) {
+            mostrarEscolhasAmelia();
+            return;
+        }
+
+        // Terceira etapa: encerrar a conversa
+        if (etapaConversa === 2) {
+            finalizarDialogo();
+            return;
+        }
+    }
+
     mostrarFala();
 }
+
+
+// ==========================================
+// MOSTRAR ESCOLHAS DE AMÉLIA
+// ==========================================
+
+function mostrarEscolhasAmelia() {
+
+    dialogoAtivo = false;
+
+    nomePersonagem.textContent = "Amélia";
+
+    if (imagemPersonagem) {
+        imagemPersonagem.src = "../assets/imagens/personagem.png";
+        imagemPersonagem.alt = "Amélia";
+    }
+
+    // PRIMEIRA ETAPA DE ESCOLHAS
+    if (etapaConversa === 0) {
+
+        textoDialogo.textContent = "O que devo responder?";
+
+        opcoesDialogo.innerHTML = `
+            <button onclick="escolherRespostaAmelia(0)">
+                Eu? É…, eu estou procurando o papel de medicação da Ágata,
+                me pediram pra dar a medicação dela agora, mas não encontro em
+                lugar nenhum.
+            </button>
+
+            <button onclick="escolherRespostaAmelia(1)">
+                Eu... Cheguei atrasada! Mas precisava das medicações da Ágata,
+                então tentei procurar aqui... Não achei e estava indo para a
+                sala de experimentos.
+            </button>
+        `;
+    }
+
+    // SEGUNDA ETAPA DE ESCOLHAS
+    else if (etapaConversa === 1) {
+
+        textoDialogo.textContent = "O que devo responder agora?";
+
+        opcoesDialogo.innerHTML = `
+            <button onclick="escolherRespostaAmelia(0)">
+                Você me ajudaria? Muito Obrigada?
+            </button>
+
+            <button onclick="escolherRespostaAmelia(1)">
+                Sério? Quer dizer... Claro, eu adoraria.
+            </button>
+        `;
+    }
+
+    opcoesDialogo.style.display = "flex";
+    interfaceDialogo.style.display = "block";
+}
+
+
+// ==========================================
+// ESCOLHER RESPOSTA DE AMÉLIA
+// ==========================================
+
+function escolherRespostaAmelia(opcao) {
+
+    escolhaAmelia = opcao;
+
+    opcoesDialogo.style.display = "none";
+
+    // PRIMEIRA ESCOLHA
+    if (etapaConversa === 0) {
+
+        etapaConversa = 1;
+
+        iniciarDialogoPersonalizado([
+            {
+                nome: "???",
+                imagem: "../assets/imagens/Iara.png",
+                texto: escolhaAmelia === 0
+                    ? "Talvez esteja na sala de experimentos, esse hospital sempre é bagunçado, as coisas nunca estão no lugar certo."
+                    : "Atrasada? Sei, mas tem razão, deve estar por lá."
+            },
+
+            {
+                nome: "???",
+                imagem: "../assets/imagens/Iara.png",
+                texto: "Bem, gostaria de ajuda para encontrá-lo?"
+            }
+        ]);
+
+        return;
+    }
+
+    // SEGUNDA ESCOLHA
+    if (etapaConversa === 1) {
+
+        etapaConversa = 2;
+
+        iniciarDialogoPersonalizado([
+            {
+                nome: "???",
+                imagem: "../assets/imagens/Iara.png",
+                texto: escolhaAmelia === 0
+                    ? "Não precisa agradecer. Só espero que encontre logo a medicação."
+                    : "Certo, apenas me acompanhe."
+            },
+
+            {
+                nome: "Iara",
+                imagem: "../assets/imagens/Iara.png",
+                texto: "Ah, mas antes que eu me esqueça... Meu nome é Iara. Você não pareceu me reconhecer."
+            }
+        ]);
+
+        return;
+    }
+}
+
 
 // ==========================================
 // FINALIZAR DIÁLOGO
 // ==========================================
-
 function finalizarDialogo() {
 
     dialogoAtivo = false;
@@ -247,11 +389,11 @@ function finalizarDialogo() {
 
     } else {
 
-        // Só mostra o inventário quando a conversa terminar
         controlarInventario(false);
 
     }
 }
+
 
 // ==========================================
 // INICIAR ESCOLHA DO UNIFORME
@@ -263,28 +405,25 @@ function iniciarEscolhaUniforme() {
 
     interfaceDialogo.style.display = "block";
 
-    // Esconde a imagem lateral da personagem
     if (imagemPersonagem) {
         imagemPersonagem.style.display = "none";
     }
 
-    // Mostra o nome e o texto
     nomePersonagem.textContent = "Amélia";
 
     textoDialogo.textContent =
         "Um uniforme... Será que devo experimentar?";
 
-    // Mostra as opções
     opcoesDialogo.style.display = "flex";
 }
 
+
 // ==========================================
-// ESCOLHER UMA OPÇÃO
+// ESCOLHER UMA OPÇÃO DO UNIFORME
 // ==========================================
 
 function escolherUniforme(opcao) {
 
-    // Impede que a escolha seja feita novamente
     opcoesDialogo.style.display = "none";
 
     const escolhas = [
@@ -294,7 +433,6 @@ function escolherUniforme(opcao) {
 
     textoDialogo.textContent = escolhas[opcao];
 
-    // Aguarda antes de mostrar a apresentação
     setTimeout(function() {
 
         interfaceDialogo.style.display = "none";
@@ -304,18 +442,17 @@ function escolherUniforme(opcao) {
     }, 900);
 }
 
+
 // ==========================================
 // FECHAR APRESENTAÇÃO DO UNIFORME
 // ==========================================
 
 function fecharApresentacaoUniforme(event) {
 
-    // Impede que o clique continue até o documento
     if (event) {
         event.stopPropagation();
     }
 
-    // Fecha a apresentação
     apresentacaoUniforme.style.display = "none";
 
     const falasDepoisUniforme = [
@@ -331,9 +468,11 @@ function fecharApresentacaoUniforme(event) {
     iniciarDialogoPersonalizado(falasDepoisUniforme);
 }
 
+
 // ==========================================
 // AVANÇAR COM CLIQUE
 // ==========================================
+
 document.addEventListener("click", function(event) {
 
     if (!dialogoAtivo) return;
@@ -349,8 +488,8 @@ document.addEventListener("click", function(event) {
     }
 
     proximaFala();
-
 });
+
 
 // ==========================================
 // AVANÇAR COM ENTER OU ESPAÇO
@@ -377,11 +516,10 @@ document.addEventListener("keydown", function(event) {
         event.code === "Space"
     ) {
         event.preventDefault();
-
         proximaFala();
     }
-
 });
+
 
 // ==========================================
 // AGUARDAR O FADE-IN
@@ -394,8 +532,6 @@ window.addEventListener("load", function() {
 
     const duracaoFade = possuiFade ? 1500 : 0;
 
-    // Só inicia o diálogo automático se a página
-    // tiver a sequência inicial de falas
     if (interfaceDialogo && textoDialogo) {
 
         setTimeout(function() {

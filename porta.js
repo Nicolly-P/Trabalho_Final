@@ -71,7 +71,6 @@ function abrirCadeado() {
         mensagem.textContent = "Cadeado destrancado!";
 
     } else {
-
         // O armário ainda está trancado
         numerosCadeado = [0, 0, 0, 0];
 
@@ -81,7 +80,6 @@ function abrirCadeado() {
         document.querySelector(".confirmar-senha").style.display = "block";
 
         recompensa.style.display = "none";
-
         mensagem.textContent = "";
     }
 }
@@ -89,7 +87,6 @@ function abrirCadeado() {
 /* =====================================
    FECHAR CADEADO
    ===================================== */
-
 function fecharCadeado() {
     document.getElementById("cadeadoArmario").style.display = "none";
 }
@@ -97,9 +94,7 @@ function fecharCadeado() {
 /* =====================================
    GIRAR UMA ROLETA
    ===================================== */
-
 function girarNumero(indice, direcao) {
-
     numerosCadeado[indice] += direcao;
 
     // Se passar de 9, volta para 0
@@ -111,36 +106,27 @@ function girarNumero(indice, direcao) {
     if (numerosCadeado[indice] < 0) {
         numerosCadeado[indice] = 9;
     }
-
     atualizarNumeros();
 }
 
 /* =====================================
    ATUALIZAR OS NÚMEROS NA TELA
    ===================================== */
-
 function atualizarNumeros() {
-
     for (let i = 0; i < 4; i++) {
-
         document.getElementById("numero" + i).textContent =
             numerosCadeado[i];
-
     }
 }
 
 /* =====================================
    VERIFICAR SENHA DO ARMÁRIO
    ===================================== */
-
 function verificarSenha() {
-
     let senhaDigitada = numerosCadeado.join("");
-
     const mensagem = document.getElementById("mensagemCadeado");
 
     if (senhaDigitada === senhaArmario) {
-
         mensagem.style.color = "#72d572";
         mensagem.textContent = "Cadeado destrancado!";
 
@@ -167,7 +153,6 @@ function verificarSenha() {
 /* =====================================
    RECOLHER ITEM DO ARMÁRIO
    ===================================== */
-
 function recolherItem() {
 
     // Registra que o jogador já recolheu o item

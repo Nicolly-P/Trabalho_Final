@@ -8,462 +8,168 @@
 
     <title>Santa Glória - Nova Cena</title>
 
-    <!-- CSS DA CENA -->
     <link rel="stylesheet" href="../css/porta.css">
-    <link rel="stylesheet" href="../css/inventario.css">
 </head>
 
 <body>
 
-<audio id="musicaFundo" loop>
-    <source src="../assets/audio/audio.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-</audio>
-
-    <!-- =====================================
-        CENÁRIO PRINCIPAL
-        ===================================== -->
-
+    <!-- CENÁRIO PRINCIPAL -->
     <main id="cenarioPorta">
-        
 
         <!-- QUADRO CLICÁVEL -->
-        <button
-            type="button"
-            class="elemento-clicavel quadro"
-            onclick="abrirZoomQuadro()"
-            aria-label="Examinar quadro de avisos">
+        <button type="button" class="elemento-clicavel quadro" onclick="abrirZoomQuadro()" aria-label="Examinar quadro de avisos">
+            <img src="../assets/imagens/quadro.png" alt="" draggable="false">
+        </button>
 
-            <img
-                src="../assets/imagens/quadro.png"
-                alt=""
-                draggable="false">
+        <!-- APROXIMAÇÃO DO QUADRO -->
+<div id="zoomQuadro" class="zoom-quadro">
+
+    <div class="fundo-zoom" onclick="fecharZoomQuadro()"></div>
+
+    <div class="conteudo-zoom">
+        <button class="fechar-zoom" onclick="fecharZoomQuadro()"> X </button>
+        <img src="../assets/imagens/qua.zoom.png" alt="Quadro ampliado">
+
+    </div>
+</div>
+
+        <!-- ARMÁRIOS CLICÁVEIS -->
+        <button type="button" class="elemento-clicavel armarios" onclick="abrirCadeado()" aria-label="Examinar armários">
+
+            <img src="../assets/imagens/armarios.png" alt="Armários" draggable="false">
 
         </button>
 
+        <!-- PRANCHETA CLICÁVEL -->
+<button class="elemento-clicavel prancheta"
+        onclick="abrirZoomPrancheta()">
 
-        <!-- =====================================
-             APROXIMAÇÃO DO QUADRO
-             ===================================== -->
+    <img src="../assets/imagens/prancheta.png"
+         alt="Prancheta">
 
-        <div id="zoomQuadro" class="zoom-quadro">
+</button>
 
-            <div
-                class="fundo-zoom"
-                onclick="fecharZoomQuadro()">
-            </div>
+<!-- ZOOM DA PRANCHETA -->
+<div id="zoomPrancheta" class="zoom-quadro">
 
-            <div class="conteudo-zoom">
+    <div class="fundo-zoom"
+         onclick="fecharZoomPrancheta()">
+    </div>
 
-                <button
-                    type="button"
-                    class="fechar-zoom"
-                    onclick="fecharZoomQuadro()">
-                    ×
-                </button>
+    <div class="conteudo-zoom">
 
-                <img
-                    src="../assets/imagens/qua.zoom.png"
-                    alt="Quadro ampliado">
-
-            </div>
-
-        </div>
-
-
-        <!-- =====================================
-             ARMÁRIOS CLICÁVEIS
-             ===================================== -->
-
-        <button
-            type="button"
-            class="elemento-clicavel armarios"
-            onclick="abrirCadeado()"
-            aria-label="Examinar armários">
-
-            <img
-                src="../assets/imagens/armarios.png"
-                alt="Armários"
-                draggable="false">
-
-        </button>
-
-
-        <!-- =====================================
-             PRANCHETA CLICÁVEL
-             ===================================== -->
-
-        <button
-            type="button"
-            class="elemento-clicavel prancheta"
-            onclick="abrirZoomPrancheta()"
-            aria-label="Examinar prancheta">
-
-            <img
-                src="../assets/imagens/prancheta.png"
-                alt="Prancheta"
-                draggable="false">
-
-        </button>
-
-
-        <!-- =====================================
-             ZOOM DA PRANCHETA
-             ===================================== -->
-
-        <div id="zoomPrancheta" class="zoom-quadro">
-
-            <div
-                class="fundo-zoom"
+        <button class="fechar-zoom"
                 onclick="fecharZoomPrancheta()">
-            </div>
-
-            <div class="conteudo-zoom">
-
-                <button
-                    type="button"
-                    class="fechar-zoom"
-                    onclick="fecharZoomPrancheta()">
-                    ×
-                </button>
-
-                <img
-                    src="../assets/imagens/prancheta.png"
-                    alt="Prancheta ampliada">
-
-            </div>
-
-        </div>
-
-
-        <!-- =====================================
-             CADEADO DO ARMÁRIO
-             ===================================== -->
-
-        <div id="cadeadoArmario" class="cadeado-armario">
-
-            <div
-                class="fundo-cadeado"
-                onclick="fecharCadeado()">
-            </div>
-
-            <div class="conteudo-cadeado">
-
-                <button
-                    type="button"
-                    class="fechar-cadeado"
-                    onclick="fecharCadeado()">
-                    ×
-                </button>
-
-                <h2>Cadeado do Armário</h2>
-
-                <p>Insira a senha de quatro números.</p>
-
-
-                <!-- ROLETA DOS NÚMEROS -->
-
-                <div class="roletas">
-
-                    <!-- PRIMEIRO NÚMERO -->
-                    <div class="roleta">
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(0, -1)">
-                            ▲
-                        </button>
-
-                        <span id="numero0">0</span>
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(0, 1)">
-                            ▼
-                        </button>
-
-                    </div>
-
-
-                    <!-- SEGUNDO NÚMERO -->
-                    <div class="roleta">
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(1, -1)">
-                            ▲
-                        </button>
-
-                        <span id="numero1">0</span>
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(1, 1)">
-                            ▼
-                        </button>
-
-                    </div>
-
-
-                    <!-- TERCEIRO NÚMERO -->
-                    <div class="roleta">
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(2, -1)">
-                            ▲
-                        </button>
-
-                        <span id="numero2">0</span>
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(2, 1)">
-                            ▼
-                        </button>
-
-                    </div>
-
-
-                    <!-- QUARTO NÚMERO -->
-                    <div class="roleta">
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(3, -1)">
-                            ▲
-                        </button>
-
-                        <span id="numero3">0</span>
-
-                        <button
-                            type="button"
-                            onclick="girarNumero(3, 1)">
-                            ▼
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CONFIRMAR SENHA -->
-
-                <button
-                    type="button"
-                    class="confirmar-senha"
-                    onclick="verificarSenha()">
-
-                    Confirmar
-
-                </button>
-
-
-                <!-- MENSAGEM DO CADEADO -->
-
-                <p id="mensagemCadeado"></p>
-
-
-                <!-- =====================================
-                     ITEM DISPONÍVEL NO ARMÁRIO
-                     ===================================== -->
-
-                <div
-                    id="recompensaArmario"
-                    class="recompensa-armario">
-
-                    <p>O armário foi destrancado!</p>
-
-                    <button
-                        type="button"
-                        class="botao-recolher"
-                        onclick="recolherItem()">
-
-                        <span>➜</span>
-
-                        <small>RECOLHER ITEM</small>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =====================================
-             TELA DE ITEM ADQUIRIDO
-             ===================================== -->
-
-        <div id="itemAdquirido" class="item-adquirido">
-
-            <div class="fundo-item"></div>
-
-            <div class="conteudo-item">
-
-                <p class="titulo-item">
-                    ITEM ADQUIRIDO
-                </p>
-
-                <div class="imagem-item">
-
-                    <img
-                        src="../assets/imagens/uniforme.png"
-                        alt="Uniforme encontrado">
-
-                </div>
-
-                <h2 id="nomeItem">
-                    Uniforme escolar
-                </h2>
-
-                <p class="descricao-item">
-                    Você encontrou um novo uniforme!
-                </p>
-
-                <button
-                    type="button"
-                    onclick="fecharItemAdquirido()">
-
-                    CONTINUAR
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================
-         DIÁLOGO E ESCOLHA DA PERSONAGEM
-         ===================================== -->
-
-    <div
-        id="interfaceDialogo"
-        class="interface-dialogo"
-        data-pular-dialogo-inicial="true">
-
-
-        <!-- IMAGEM LATERAL DA PERSONAGEM -->
-
-        <img
-            id="imagemPersonagem"
-            class="imagem-personagem"
-            src="../assets/imagens/personagem.png"
-            alt="Amélia">
-
-
-        <!-- CAIXA DE DIÁLOGO -->
-
-        <div class="caixa-dialogo">
-
-            <div class="nome-personagem"></div>
-
-            <p class="texto-dialogo"></p>
-
-
-            <!-- OPÇÕES DE ESCOLHA -->
-
-            <div
-                id="opcoesDialogo"
-                class="opcoes-dialogo">
-
-                <button
-                    type="button"
-                    onclick="escolherUniforme(0)"> Acho que devo experimentar este uniforme. </button>
-
-                <button
-                    type="button"
-                    onclick="escolherUniforme(1)"> Finalmente, algo que pode me ajudar a passar despercebida. </button>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- =====================================
-        APRESENTAÇÃO DA PERSONAGEM COM UNIFORME
-        ===================================== -->
-
-    <div
-        id="apresentacaoUniforme"
-        class="apresentacao-uniforme">
-
-        <div class="fundo-apresentacao"></div>
-        <div class="conteudo-apresentacao">
-
-            <p class="titulo-apresentacao">
-                NOVO VISUAL
-            </p>
-
-            <img
-                src="../assets/imagens/personagem.png"
-                alt="Amélia usando o uniforme"
-                class="personagem-uniforme">
-
-            <h2> Uniforme adquirido </h2>
-
-            <p>
-                Amélia agora está vestindo seu novo uniforme.
-            </p>
-
-            <button onclick="fecharApresentacaoUniforme(event)"> Continuar </button>
-
-        </div>
-    </div>
-
-
-    <!-- =====================================
-    INVENTÁRIO DA PERSONAGEM
-    ===================================== -->
-
-<div id="inventarioJogador" class="inventario-jogador">
-
-    <div class="inventario-cabecalho">
-
-        <span>INVENTÁRIO</span>
-
-        <span id="contadorInventario">0 itens</span>
-
-    </div>
-
-    <div class="inventario-conteudo">
-
-        <div
-            id="listaItensInventario"
-            class="lista-itens-inventario">
-        </div>
-
-        <p
-            id="descricaoItemInventario"
-            class="descricao-item-inventario">
-
-            Selecione um item para visualizar sua descrição.
-
-        </p>
+            ×
+        </button>
+
+        <img src="../assets/imagens/prancheta.png"
+             alt="Prancheta ampliada">
 
     </div>
 
 </div>
 
-<!-- SOM DE TRANSIÇÃO -->
-<audio id="somTransicao">
-    <source src="../assets/audio/som-transicao.mp3" type="audio/mpeg">
-</audio>
+<!-- CADEADO DO ARMÁRIO -->
+<div id="cadeadoArmario" class="cadeado-armario">
 
-    <!-- =====================================
-        JAVASCRIPT
-        ===================================== -->
+    <div class="fundo-cadeado" onclick="fecharCadeado()"></div>
 
-    <!-- SISTEMA DE DIÁLOGOS -->
-    <script src="../js/sistemas/musica.js"></script>
-    <script src="../js/sistemas/configuracoes.js"></script>
-    <script src="../js/historia/dialogo.js"></script>
-    <script src="../js/sistemas/inventario.js"></script>
+    <div class="conteudo-cadeado">
+
+        <button class="fechar-cadeado" onclick="fecharCadeado()">×</button>
+
+        <h2>Cadeado do Armário</h2>
+        <p>Insira a senha de quatro números.</p>
+
+        <div class="roletas">
+
+            <!-- PRIMEIRO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(0, -1)">▲</button>
+                <span id="numero0">0</span>
+                <button onclick="girarNumero(0, 1)">▼</button>
+            </div>
+
+            <!-- SEGUNDO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(1, -1)">▲</button>
+                <span id="numero1">0</span>
+                <button onclick="girarNumero(1, 1)">▼</button>
+            </div>
+
+            <!-- TERCEIRO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(2, -1)">▲</button>
+                <span id="numero2">0</span>
+                <button onclick="girarNumero(2, 1)">▼</button>
+            </div>
+
+            <!-- QUARTO NÚMERO -->
+            <div class="roleta">
+                <button onclick="girarNumero(3, -1)">▲</button>
+                <span id="numero3">0</span>
+                <button onclick="girarNumero(3, 1)">▼</button>
+            </div>
+
+        </div>
+
+        <button class="confirmar-senha" onclick="verificarSenha()">
+            Confirmar
+        </button>
+
+        <p id="mensagemCadeado"></p>
+
+        <!-- ITEM DISPONÍVEL NO ARMÁRIO -->
+<div id="recompensaArmario" class="recompensa-armario">
+
+    <p>O armário foi destrancado!</p>
+
+    <button class="botao-recolher" onclick="recolherItem()">
+
+        <span>➜</span>
+
+        <small>RECOLHER ITEM</small>
+
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+
+<!-- TELA DE ITEM ADQUIRIDO -->
+<div id="itemAdquirido" class="item-adquirido">
+
+    <div class="fundo-item"></div>
+
+    <div class="conteudo-item">
+
+        <p class="titulo-item">ITEM ADQUIRIDO</p>
+
+        <div class="imagem-item">
+            <img src="../assets/imagens/item.png" alt="Item encontrado">
+        </div>
+
+        <h2 id="nomeItem">Nome do Item</h2>
+
+        <p class="descricao-item">
+            Você encontrou um novo objeto!
+        </p>
+
+        <button onclick="fecharItemAdquirido()">
+            CONTINUAR
+        </button>
+
+    </div>
+
+</div>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
     <script src="../js/historia/porta.js"></script>
 
 </body>
-
 </html>
