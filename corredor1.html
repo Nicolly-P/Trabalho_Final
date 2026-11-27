@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Santa Glória - Corredor</title>
+
+    <link rel="stylesheet" href="../css/corredor1.css">
+</head>
+
+<body>
+
+    <main id="cenarioCorredor">
+
+        <!-- IMAGEM DE FUNDO -->
+        <img
+            id="imagemCenario"
+            src="../assets/imagens/corredor/corredor1.png"
+            alt="Corredor do hospital"
+        >
+
+        <!-- OPÇÃO DE VIRAR À ESQUERDA -->
+        <button
+            class="seta seta-esquerda"
+            type="button"
+            onclick="virarEsquerda()"
+            aria-label="Virar à esquerda"
+        >
+            ❮
+        </button>
+
+        <!-- OPÇÃO DE VIRAR À DIREITA -->
+        <button
+            class="seta seta-direita"
+            type="button"
+            onclick="virarDireita()"
+            aria-label="Virar à direita"
+        >
+            ❯
+        </button>
+
+        <!-- OPÇÃO DE SEGUIR EM FRENTE -->
+        <button
+            class="seta seta-frente"
+            type="button"
+            onclick="seguirEmFrente()"
+            aria-label="Seguir em frente"
+        >
+            ▲
+        </button>
+
+    </main>
+
+    <!-- MÚSICA DE FUNDO -->
+    <audio id="musicaFundo" loop>
+        <source src="../assets/audio/audio.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <!-- SCRIPTS -->
+    <script src="../js/sistemas/musica.js"></script>
+    <script src="../js/sistemas/configuracoes.js"></script>
+    <script src="../js/historia/corredor1.js"></script>
+
+</body>
+</html>

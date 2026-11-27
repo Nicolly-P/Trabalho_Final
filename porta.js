@@ -167,7 +167,7 @@ function recolherItem() {
 }
 
 /* =====================================
-   FECHAR TELA DE ITEM ADQUIRIDO
+FECHAR TELA DE ITEM ADQUIRIDO
    ===================================== */
 function fecharItemAdquirido() {
 

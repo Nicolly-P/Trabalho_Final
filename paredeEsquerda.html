@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Santa Glória - Parede Esquerda</title>
+
+    <link rel="stylesheet" href="../css/paredeEsquerda.css">
+</head>
+
+<body>
+
+    <main class="cenario">
+
+        <img
+            src="../assets/imagens/corredor/paredeEsquerda.png"
+            alt="Parede esquerda do corredor"
+            class="imagem-fundo"
+        >
+
+        <!-- VOLTAR AO CORREDOR -->
+        <button
+            class="botao-voltar"
+            onclick="window.location.href='corredor1.html'"
+            aria-label="Voltar ao corredor"
+        >
+            ↩
+        </button>
+
+    </main>
+
+    <audio id="musicaFundo" loop>
+        <source src="../assets/audio/audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="../js/sistemas/musica.js"></script>
+    <script src="../js/sistemas/configuracoes.js"></script>
+
+</body>
+</html>
